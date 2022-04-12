@@ -1,0 +1,22 @@
+﻿<div ng-controller="customersController as vm">
+
+    <umb-editor-sub-header>
+        <umb-editor-sub-header-content-left>
+            <h3>Customers</h3>
+        </umb-editor-sub-header-content-left>
+        <umb-editor-sub-header-content-right>
+            <umb-button-group ng-repeat="bg in vm.buttonGroups"
+                              button-style="{{bg.buttonStyle}}"
+                              default-button="bg.defaultButton"
+                              sub-buttons="bg.subButtons"
+                              direction="down">
+            </umb-button-group>
+        </umb-editor-sub-header-content-right>
+    </umb-editor-sub-header>
+    <umb-box>
+        <umb-box-content>
+        </umb-box-content>
+    </umb-box>
+
+
+</div>
