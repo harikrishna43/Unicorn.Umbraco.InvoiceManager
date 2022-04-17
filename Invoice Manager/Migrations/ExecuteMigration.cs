@@ -46,7 +46,8 @@ namespace Invoice_Manager.Migrations
             // This is the steps we need to take
             // Each step in the migration adds a unique value
             migrationPlan.From(string.Empty)
-                .To<CreateTableMigration>("InvoiceManager-db");
+                .To<CreateTableMigration>("InvoiceManager-db")
+            .To<AddDeleteColumnMigration>("1.0.0-alpha008");
 
             // Go and upgrade our site (Will check if it needs to do the work or not)
             // Based on the current/latest step

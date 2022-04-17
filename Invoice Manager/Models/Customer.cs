@@ -14,11 +14,9 @@ namespace Invoice_Manager.Models
         public Customer()
         {
             Dto = new CustomerDto();
-            DateCreated = DateTime.UtcNow;
-            DateModified = DateTime.UtcNow;
         }
         internal CustomerDto Dto { get; }
-        public int CustomerId => Dto.CustomerId;
+        //public int CustomerId => Dto.CustomerId;
 
         public string Name { get => Dto.Name; set => Dto.Name = value; }
         public int CustomerType { get => Dto.CustomerType; set => Dto.Type=(CustomerType)value; }
@@ -30,6 +28,9 @@ namespace Invoice_Manager.Models
         public string ZipCode { get => Dto.ZipCode; set => Dto.ZipCode=value; }
         public DateTime DateCreated { get => Dto.DateCreated.ToLocalTime(); set => Dto.DateCreated=value.ToUniversalTime(); }
         public DateTime DateModified { get => Dto.DateModified.ToLocalTime(); set => Dto.DateModified = value.ToUniversalTime(); }
+        public int CustomerId { get => Dto.CustomerId; set => Dto.CustomerId = value; }
+        public bool IsDeleted { get => Dto.IsDeleted; set => Dto.IsDeleted = value; }
+
         internal Customer(CustomerDto dto)
         {
             Dto = dto;

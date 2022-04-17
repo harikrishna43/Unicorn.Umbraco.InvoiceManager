@@ -184,15 +184,15 @@
 
         },
 
-        editRedirect: function (redirect, options) {
+        editCustomer: function (customer, options) {
 
             if (!options) options = {};
             if (typeof options === "function") options = { callback: options };
 
             editorService.open({
 	            size: "medium",
-                view: `/App_Plugins/Skybrud.Umbraco.Redirects/Views/Dialogs/Redirect.html?v=${cacheBuster}`,
-                redirect: redirect,
+                view: `/App_Plugins/InvoiceManager/Dialogs/Customer.html?v=${cacheBuster}`,
+                customer: customer,
                 options: options,
                 submit: function (value) {
                     if (options.callback) options.callback(value);
@@ -205,26 +205,26 @@
 
         },
 
-        deleteRedirect: function (redirect, success, failed) {
+        deleteCustomer: function (customer, success, failed) {
             $http({
                 method: "GET",
-                url: `${baseUrl}DeleteRedirect`,
+                url: `${baseUrl}DeleteCustomer`,
                 params: {
-                    redirectId: redirect.key
+                    customerId: customer.id
                 }
             }).then(function () {
-                notificationsService.success("Redirect deleted", "Your redirect was successfully deleted.");
-                if (success) success(redirect);
+                notificationsService.success("Customer deleted", "Your customer was successfully deleted.");
+                if (success) success(customer);
             }, function (res) {
-                notificationsService.error("Deleting redirect failed", res && res.data && res.data.meta ? res.data.meta.error : "The server was unable to delete your redirect.");
-                if (failed) failed(redirect);
+                notificationsService.error("Deleting customer failed", res && res.data && res.data.meta ? res.data.meta.error : "The server was unable to delete your customer.");
+                if (failed) failed(customer);
             });
         },
 
-        requestDeleteRedirect: function(options) {
+        requestDeleteCustomer: function(options) {
 
             if (!options) options = {};
-            if (!options.redirect) return;
+            if (!options.customer) return;
 
             if (typeof options.submit !== "function") {
                 options.submit = function() {
@@ -240,14 +240,14 @@
 
             const overlay = {
                 title: "Confirm delete",
-                content: `Are you sure you want to delete the redirect at <strong>${options.redirect.destination.displayUrl}</strong> ?`,
+                content: `Are you sure you want to delete the customer at <strong>${options.customer.name}</strong> ?`,
                 submit: function() {
     
                     // Update the button state in the UI
                     overlay.submitButtonState = "busy";
     
                     // Delete the redirect
-                    service.deleteRedirect(options.redirect, function () {
+                    service.deleteCustomer(options.customer, function () {
                         if (typeof options.submit === "function") {
                             options.submit(overlay);
                         } else {
@@ -263,11 +263,11 @@
                 }
             };
 
-            localizationService.localize("redirects_overlayDeleteTitle", null, overlay.title).then(function (value) {
+            localizationService.localize("customer_overlayDeleteTitle", null, overlay.title).then(function (value) {
                 overlay.title = value;
             });
 
-            localizationService.localize("redirects_overlayDeleteMessage", [options.redirect.destination.displayUrl], overlay.content).then(function (value) {
+            localizationService.localize("customer_overlayDeleteMessage", [options.customer.name], overlay.content).then(function (value) {
                 overlay.content = value;
             });
     

@@ -1,4 +1,5 @@
 ﻿using Invoice_Manager.Interfaces;
+using Invoice_Manager.Models;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Invoice_Manager.Models
+namespace Invoice_Manager.Queries
 {
-    public class CustomerSearchResult
+    public class SearchResult
     {
         #region Properties
 
@@ -37,10 +38,14 @@ namespace Invoice_Manager.Models
         /// <param name="page">The page returned.</param>
         /// <param name="pages">The total amount of pages.</param>
         /// <param name="items">An array of the items making up the page.</param>
-        public CustomerSearchResult(int total, int limit, int offset, int page, int pages, ICustomer[] items)
+        public SearchResult(int total, int limit, int offset, int page, int pages, ICustomer[] items)
         {
             Pagination = new CustomerSearchResultPagination(total, limit, offset, page, pages);
             Items = items;
+        }
+
+        public SearchResult()
+        {
         }
 
         #endregion

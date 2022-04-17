@@ -23,13 +23,13 @@ namespace Invoice_Manager.Migrations
                 Logger.LogDebug("The database table {DbTable} already exists, skipping", CustomerSchema.TableName);
             }
 
-            if (TableExists(InvoiceSchema.TableName) == false)
+            if (TableExists(InvoiceDto.TableName) == false)
             {
-                Create.Table<InvoiceSchema>().Do();
+                Create.Table<InvoiceDto>().Do();
             }
             else
             {
-                Logger.LogDebug("The database table {DbTable} already exists, skipping", InvoiceSchema.TableName);
+                Logger.LogDebug("The database table {DbTable} already exists, skipping", InvoiceDto.TableName);
             }
         }
     }

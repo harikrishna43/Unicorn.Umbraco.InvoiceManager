@@ -10,7 +10,7 @@ namespace Invoice_Manager.Models.Options
     public class AddCustomerOption
     {
         [JsonProperty("id")]
-        int CustomerId { get; }
+        int Id { get; }
 
         [JsonProperty("name")]
         public string Name { get; set; }
@@ -18,7 +18,7 @@ namespace Invoice_Manager.Models.Options
         [JsonProperty("customertype")]
         public int CustomerType { get; set; }
 
-        [JsonProperty("gst")]
+        [JsonProperty("gstnumber")]
         public string GSTNumber { get; set; }
 
         [JsonProperty("address")]

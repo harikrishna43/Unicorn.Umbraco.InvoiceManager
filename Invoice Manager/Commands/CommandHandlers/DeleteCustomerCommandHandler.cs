@@ -10,19 +10,19 @@ using Umbraco.Cms.Core.Mapping;
 
 namespace Invoice_Manager.Commands.CommandHandlers
 {
-    public class AddCustomerCommandHandler : ICommandHandler<AddCustomerCommand>
+    public class DeleteCustomerCommandHandler : ICommandHandler<DeleteCustomerCommand>
     {
         private readonly ICustomerService _customerService;
         private readonly IUmbracoMapper _mapper;
-        public AddCustomerCommandHandler(ICustomerService customerService, IUmbracoMapper mapper)
+        public DeleteCustomerCommandHandler(ICustomerService customerService, IUmbracoMapper mapper)
         {
             _customerService = customerService;
             _mapper = mapper;
         }
-        public async Task Handle(AddCustomerCommand command)
+        public async Task Handle(DeleteCustomerCommand command)
         {
-            var option = _mapper.Map<AddCustomerOption>(command);
-            var data=_customerService.AddCustomer(option);
+            var customer = _customerService.GetCustomerById(command.CustomerId);
+            _customerService.DeleteCustomer(customer);
             await Task.Run(() => {  });
         }
     }

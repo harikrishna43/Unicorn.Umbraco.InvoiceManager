@@ -57,6 +57,9 @@ namespace Invoice_Manager.Models.Schema
         [Column(nameof(DateModified))]
         public DateTime DateModified { get; set; }
 
+        [Column(nameof(IsDeleted))]
+        public bool IsDeleted { get; set; }
+
         /// <summary>
         /// This field is ignored by db.CreateTable().
         /// </summary>

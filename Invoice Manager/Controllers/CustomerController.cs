@@ -1,6 +1,8 @@
 ﻿using Invoice_Manager.Commands;
+using Invoice_Manager.Enums;
 using Invoice_Manager.Interfaces;
 using Invoice_Manager.Models.Options;
+using Invoice_Manager.Queries;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Linq;
@@ -49,5 +51,54 @@ namespace Invoice_Manager.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpPost]
+        public ActionResult EditCustomer([FromBody] JObject m)
+        {
+            try
+            {
+                EditCustomerOption model = m.ToObject<EditCustomerOption>();
+                var command = _mapper.Map<EditCustomerCommand>(model);
+                _commandDispatcher.Send(command);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Customer has not been added.");
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult DeleteCustomer(int customerId)
+        {
+            try
+            {
+                _commandDispatcher.Send(new DeleteCustomerCommand { CustomerId=customerId});
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Customer has not been added.");
+                return BadRequest();
+            }
+        }
+
+        [HttpGet]
+        public ActionResult GetCustomers(int page = 1, int limit = 20, int type =2, string text = null, int? customerId = null)
+        {
+            try
+            {
+                var query = new GetCustomerQuery { Limit = limit, Page = page, Text = text, CustomerType = (CustomerType)type };
+                var data=_queryDispatcher.Send<GetCustomerQuery,SearchResult>(query);
+                return Ok(data);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Exception: ");
+                return BadRequest();
+            }
+        }
+
     }
 }

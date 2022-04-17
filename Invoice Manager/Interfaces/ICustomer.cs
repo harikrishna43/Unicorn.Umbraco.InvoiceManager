@@ -10,14 +10,14 @@ namespace Invoice_Manager.Interfaces
     public interface ICustomer
     {
         [JsonProperty("id")]
-        int CustomerId { get; }
+        public int CustomerId { get; set; }
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("customertype")]
         public int CustomerType { get; set; }
 
-        [JsonProperty("gst")]
+        [JsonProperty("gstnumber")]
         public string GSTNumber { get; set; }
 
         [JsonProperty("address")]
@@ -37,5 +37,8 @@ namespace Invoice_Manager.Interfaces
 
         [JsonProperty("datemodified")]
         public DateTime DateModified { get; set; }
+
+        [JsonProperty("isdeleted")]
+        public bool IsDeleted { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Invoice_Manager.Commands;
 using Invoice_Manager.Interfaces;
+using Invoice_Manager.Models;
 using Invoice_Manager.Models.Options;
 using System;
 using System.Collections.Generic;
@@ -10,19 +11,19 @@ using Umbraco.Cms.Core.Mapping;
 
 namespace Invoice_Manager.Commands.CommandHandlers
 {
-    public class AddCustomerCommandHandler : ICommandHandler<AddCustomerCommand>
+    public class EditCustomerCommandHandler : ICommandHandler<EditCustomerCommand>
     {
         private readonly ICustomerService _customerService;
         private readonly IUmbracoMapper _mapper;
-        public AddCustomerCommandHandler(ICustomerService customerService, IUmbracoMapper mapper)
+        public EditCustomerCommandHandler(ICustomerService customerService, IUmbracoMapper mapper)
         {
             _customerService = customerService;
             _mapper = mapper;
         }
-        public async Task Handle(AddCustomerCommand command)
-        {
-            var option = _mapper.Map<AddCustomerOption>(command);
-            var data=_customerService.AddCustomer(option);
+        public async Task Handle(EditCustomerCommand command)
+{
+            var option = _mapper.Map<ICustomer>(command);
+            var data=_customerService.UpdateCustomer(option);
             await Task.Run(() => {  });
         }
     }

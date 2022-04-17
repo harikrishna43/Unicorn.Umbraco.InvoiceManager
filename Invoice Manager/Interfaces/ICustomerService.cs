@@ -15,5 +15,6 @@ namespace Invoice_Manager.Interfaces
         CustomerSearchResult GetCustomer(CustomerSearchOption option);
         IEnumerable<ICustomer> GetAll();
         ICustomer GetCustomerById(int id);
+        void DeleteCustomer(ICustomer customer);
     }
 }

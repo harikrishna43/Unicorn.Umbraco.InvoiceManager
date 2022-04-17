@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations;
 
-namespace Invoice_Manager.Models.Schema
+namespace Invoice_Manager.Models.Dtos
 {
     [TableName(TableName)]
     [PrimaryKey(nameof(InvoiceId), AutoIncrement = true)]
@@ -36,9 +36,6 @@ namespace Invoice_Manager.Models.Schema
         [Column(nameof(CustomerId))]
         public int CustomerId { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
         [Column(nameof(Status))]
         public int Status { get; set; }
 
@@ -68,6 +65,7 @@ namespace Invoice_Manager.Models.Schema
 
         [Column(nameof(DateModified))]
         public DateTime DateModified { get; set; }
+
 
         [Column(nameof(IsDeleted))]
         public bool IsDeleted { get; set; }

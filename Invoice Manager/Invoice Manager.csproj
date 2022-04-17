@@ -30,8 +30,4 @@
     <ItemGroup>
       <None Remove="Services\znc44eob.5cd~" />
     </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Queries\" />
-    </ItemGroup>
 </Project>

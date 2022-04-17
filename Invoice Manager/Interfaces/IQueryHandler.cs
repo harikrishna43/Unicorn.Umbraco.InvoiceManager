@@ -4,25 +4,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Umbraco.Cms.Core.Persistence.Querying;
 
 namespace Invoice_Manager.Interfaces
 {
-    public interface IQuery
+    public interface IQuery<TResult>
     {
     }
     public interface IQueryHandler
     {
     }
 
-    public interface IQueryHandler<T> : IQueryHandler where T : IQuery
+    public interface IQueryHandler<in TQuery, out TResult> where TQuery : IQuery<TResult> 
     {
-        IList<IResult> Handle(T query);
+        TResult Handle(TQuery query);
 
     }
 
-
     public interface IQueryDispatcher
     {
-        IList<IResult> Send<T>(T query) where T : IQuery;
+        TResult Send<TQuery, TResult>(TQuery query) where TQuery : IQuery<TResult>;
     }
 }

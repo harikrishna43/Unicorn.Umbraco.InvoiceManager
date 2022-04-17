@@ -18,7 +18,7 @@
 
     $scope.model.hiddenProperties = [];
 
-    if ($scope.model.redirect) {
+    if ($scope.model.customer) {
 
         $scope.model.title = "Edit redirect";
         localizationService.localize("customer_editCustomer").then(function (value) { $scope.model.title = value; });
@@ -29,7 +29,7 @@
 
         $scope.model.hiddenProperties.push({
             alias: "id",
-            value: $scope.model.customer.customerid
+            value: $scope.model.customer.id
         });
 
         //$scope.model.hiddenProperties.push({
@@ -97,7 +97,15 @@
         view: `textarea`,
         value: $scope.model.customer && $scope.model.customer.address ? $scope.model.customer.address : "",
     });
-
+    $scope.model.properties.push({
+        alias: "city",
+        label: "City",
+        labelKey: "customer_propertyCity",
+        description: "Add customer City",
+        descriptionKey: "customer_propertyCityDescription",
+        view: `textbox`,
+        value: $scope.model.customer && $scope.model.customer.city ? $scope.model.customer.city: "",
+    });
     $scope.model.properties.push({
         alias: "state",
         label: "State",
@@ -107,15 +115,7 @@
         view: `textbox`,
         value: $scope.model.customer && $scope.model.customer.state ? $scope.model.customer.state : "",
     });
-    $scope.model.properties.push({
-        alias: "country",
-        label: "Country",
-        labelKey: "customer_propertyCountry",
-        description: "Add customer Country",
-        descriptionKey: "customer_propertyCountryDescription",
-        view: `textbox`,
-        value: $scope.model.customer && $scope.model.customer.country ? $scope.model.customer.country : "",
-    });
+    
     $scope.model.properties.push({
         alias: "country",
         label: "Country",
@@ -127,57 +127,17 @@
     });
 
     $scope.model.properties.push({
-        alias: "zipCode",
-        label: "ZipCode",
+        alias: "zipcode",
+        label: "Postal Code",
         labelKey: "customer_propertyZipCode",
         description: "Add customer ZipCode",
         descriptionKey: "customer_propertyZipCodeDescription",
         view: `textbox`,
-        value: $scope.model.customer && $scope.model.customer.zipCode ? $scope.model.customer.zipCode : "",
+        value: $scope.model.customer && $scope.model.customer.zipcode ? $scope.model.customer.zipcode : "",
     });//
 
 
     $scope.model.infoProperties = [];
-
-    // We only wish to initialize/show the info properties when we have a redirect (eg. when editing, not adding)
-    //if ($scope.model.redirect && $scope.model.redirect.id) {
-    //    $scope.model.infoProperties = [
-    //        {
-    //            alias: "customerid",
-    //            label: "ID",
-    //            labelKey: "redirects_customerId",
-    //            view: `label`,
-    //            value: $scope.model.redirect ? $scope.model.redirect.id : null,
-    //            readonly: true
-    //        },
-    //        {
-    //            alias: "key",
-    //            label: "Key",
-    //            labelKey: "redirects_propertyKey",
-    //            view: `/App_Plugins/Skybrud.Umbraco.Redirects/Views/Editors/Code.html?v=${cacheBuster}`,
-    //            value: $scope.model.redirect ? $scope.model.redirect.key : null,
-    //            readonly: true
-    //        },
-    //        {
-    //            alias: "createDate",
-    //            label: "Created Date",
-    //            labelKey: "redirects_propertyCreateDate",
-    //            view: `/App_Plugins/Skybrud.Umbraco.Redirects/Views/Editors/Timestamp.html?v=${cacheBuster}`,
-    //            value: $scope.model.redirect ? $scope.model.redirect.createDate : null,
-    //            hello: moment(new Date($scope.model.redirect.updateDate)).fromNow(),
-    //            readonly: true
-    //        },
-    //        {
-    //            alias: "updateDate",
-    //            label: "Updated Date",
-    //            labelKey: "redirects_propertyUpdateDate",
-    //            view: `/App_Plugins/Skybrud.Umbraco.Redirects/Views/Editors/Timestamp.html?v=${cacheBuster}`,
-    //            value: $scope.model.redirect ? $scope.model.redirect.updateDate : null,
-    //            hello: moment(new Date($scope.model.redirect.updateDate)).fromNow(),
-    //            readonly: true
-    //        }
-    //    ];
-    //};
 
     const allProperties = $scope.model.properties.concat($scope.model.hiddenProperties);
 
@@ -227,7 +187,7 @@
         icon: "icon-info"
     };
 
-    $scope.model.navigation = $scope.model.redirect && $scope.model.redirect.id ? [vm.settingsApp, vm.infoApp] : [];
+    $scope.model.navigation = $scope.model.cusotmer && $scope.model.customer.id ? [vm.settingsApp, vm.infoApp] : [];
 
     function initLabels() {
 
@@ -266,7 +226,7 @@
     vm.save = function () {
 
         // Map the properties back to an object we can send to the API
-        const redirect = customerService.propertiesToObject(allProperties);
+        const customer = customerService.propertiesToObject(allProperties);
 
         // Attempt to submit the form (Angular validation will kick in)
         if (!formHelper.submitForm({ scope: $scope })) return;
@@ -277,22 +237,14 @@
         // Make sure we set a loading state
         vm.loading = true;
 
-        // Make sure we set the "rootNodeKey" property as well
-        if (redirect.rootNodeId > 0) {
-            const rootNode = vm.options.rootNodes.find(x => x.id === redirect.rootNodeId);
-            redirect.rootNodeKey = rootNode ? rootNode.key : "00000000-0000-0000-0000-000000000000";
-        } else {
-            redirect.rootNodeKey = "00000000-0000-0000-0000-000000000000";
-        }
-
-        if (redirect.key) {
+        if (customer.id) {
             $http({
                 method: "POST",
                 url: `${baseUrl}EditCustomer`,
                 params: {
-                    redirectId: redirect.key
+                    customerid: customer.customerid
                 },
-                data: redirect
+                data: customer
             }).then(function (r) {
                 vm.loading = false;
                 notificationsService.success(vm.labels.saveSuccessfulTitle, vm.labels.saveSuccessfulMessage);
@@ -305,7 +257,7 @@
             $http({
                 method: "POST",
                 url: `${baseUrl}Addcustomer`,
-                data: redirect
+                data: customer
             }).then(function (r) {
                 vm.loading = false;
                 notificationsService.success(vm.labels.addSuccessfulTitle, vm.labels.addSuccessfulMessage);

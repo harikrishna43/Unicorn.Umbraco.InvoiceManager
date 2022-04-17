@@ -9,6 +9,7 @@ namespace Invoice_Manager.Enums
     public enum CustomerType
     {
         Individual,
-        Company
+        Company,
+        All
     }
 }
