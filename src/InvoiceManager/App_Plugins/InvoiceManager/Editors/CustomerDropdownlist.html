@@ -1,0 +1,9 @@
+﻿<div class="" ng-controller="InvoiceManager.Editors.CustomerDropdown.Controller as vm">
+    <div ng-class="{loading: vm.loading}" class="col">
+        <select ng-options="item as item.name for item in vm.customers track by item.id" ng-model="model.value" ng-disabled="vm.loading"></select>
+    </div>
+    <div class="col">
+        <code><span>Name: </span>{{model.value.name}}</code>
+        <code><span>Phone: </span>{{model.value.phone}}</code>
+    </div>
+</div>

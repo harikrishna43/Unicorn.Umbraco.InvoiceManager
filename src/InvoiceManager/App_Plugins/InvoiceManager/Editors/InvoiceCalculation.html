@@ -1,0 +1,32 @@
+﻿<div class="" ng-controller="InvoiceManager.Editors.InvoiceCalculation.Controller">
+    <umb-box>
+        <umb-box-content>
+            <div class="form-control umb-el-wrap">
+                <label class="control-label" for="quantity">Quantity</label>
+                <input type="number" class="umb-property-editor umb-textstring textstring" name="quantity" ng-change="change()" ng-model="model.value.quantity" ng-value="model.value.quantity" />
+            </div>
+            <div class="form-control umb-el-wrap control-header">
+                <label class="control-label" for="unitprice">Unit Price</label>
+                <input type="number" class="umb-property-editor umb-textstring textstring" name="unitprice" ng-change="change()" ng-model="model.value.unitprice" ng-value="model.value.unitprice" />
+            </div>
+
+            <div class="form-control umb-el-wrap control-header">
+                <label class="control-label" for="taxableamount">Taxable Amount</label>
+                <input type="number" class="umb-property-editor umb-textstring textstring" name="taxableamount" ng-model="model.value.taxableamount" ng-value="model.value.taxableamount" readonly />
+            </div>
+            <div class="form-control umb-el-wrap control-header">
+                <label class="control-label" for="gst">GST (%)</label>
+                <input type="number" class="umb-property-editor umb-textstring textstring" name="gst" ng-model="model.value.gst" ng-value="model.value.gst" readonly />
+            </div>
+            <div class="form-control umb-el-wrap control-header">
+                <label class="control-label" for="totaltax">Total Tax</label>
+                <input type="number" class="umb-property-editor umb-textstring textstring" name="totaltax" ng-model="model.value.totaltax" ng-value="model.value.totaltax" readonly />
+            </div>
+            <div class="form-control umb-el-wrap control-header">
+                <label class="control-label" for="totalamount">Total Amount</label>
+                <input type="number" class="umb-property-editor umb-textstring textstring" name="totalamount" ng-model="model.value.totalamount" ng-value="model.value.totalamount" readonly />
+            </div>
+
+        </umb-box-content>
+    </umb-box>
+</div>

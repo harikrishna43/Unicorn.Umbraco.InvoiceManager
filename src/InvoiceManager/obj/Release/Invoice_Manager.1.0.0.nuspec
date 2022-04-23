@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Invoice_Manager</id>
+    <version>1.0.0</version>
+    <title>Invoice_Manager</title>
+    <authors>InvoiceManager</authors>
+    <description>...</description>
+    <tags>umbraco plugin package</tags>
+    <dependencies>
+      <group targetFramework="net6.0">
+        <dependency id="PuppeteerSharp" version="7.0.0" exclude="Build,Analyzers" />
+        <dependency id="Umbraco.Cms.Web.BackOffice" version="9.3.1" exclude="Build,Analyzers" />
+        <dependency id="Umbraco.Cms.Web.Website" version="9.3.1" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\bin\Release\net6.0\InvoiceManager.dll" target="lib\net6.0\InvoiceManager.dll" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Customers\Customers.html" target=".\App_Plugins\InvoiceManager\Customers\Customers.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Dashboards\info.html" target=".\App_Plugins\InvoiceManager\Dashboards\info.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Dialogs\Customer.html" target=".\App_Plugins\InvoiceManager\Dialogs\Customer.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Dialogs\Invoice.html" target=".\App_Plugins\InvoiceManager\Dialogs\Invoice.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Dialogs\InvoiceDetails.html" target=".\App_Plugins\InvoiceManager\Dialogs\InvoiceDetails.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Editors\CustomerDropdownlist.html" target=".\App_Plugins\InvoiceManager\Editors\CustomerDropdownlist.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Editors\InvoiceCalculation.html" target=".\App_Plugins\InvoiceManager\Editors\InvoiceCalculation.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Editors\RadioGroup.html" target=".\App_Plugins\InvoiceManager\Editors\RadioGroup.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Index.html" target=".\App_Plugins\InvoiceManager\Index.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\Invoice\Invoice.html" target=".\App_Plugins\InvoiceManager\Invoice\Invoice.html" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\js\Dialogs\CustomerDialog.js" target=".\App_Plugins\InvoiceManager\js\Dialogs\CustomerDialog.js" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\js\Dialogs\InvoiceDetailDialog.js" target=".\App_Plugins\InvoiceManager\js\Dialogs\InvoiceDetailDialog.js" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\js\Dialogs\InvoiceDialog.js" target=".\App_Plugins\InvoiceManager\js\Dialogs\InvoiceDialog.js" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\js\Editors\CustomerDropdownlist.js" target=".\App_Plugins\InvoiceManager\js\Editors\CustomerDropdownlist.js" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\js\Editors\InvoiceCalculation.Controller.js" target=".\App_Plugins\InvoiceManager\js\Editors\InvoiceCalculation.Controller.js" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\js\Editors\RadioGroup.js" target=".\App_Plugins\InvoiceManager\js\Editors\RadioGroup.js" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\js\Services\CustomerService.js" target=".\App_Plugins\InvoiceManager\js\Services\CustomerService.js" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\js\Services\InvoiceService.js" target=".\App_Plugins\InvoiceManager\js\Services\InvoiceService.js" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\App_Plugins\InvoiceManager\lang\en-US.xml" target=".\App_Plugins\InvoiceManager\lang\en-US.xml" />
+    <file src="E:\Projects\Plugins\U9\Umbraco.Our.InvoiceManager\src\InvoiceManager\build\Invoice Manager.targets" target="buildTransitive\Invoice Manager.targets" />
+  </files>
+</package>

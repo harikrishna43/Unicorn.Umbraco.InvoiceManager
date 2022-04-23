@@ -1,0 +1,31 @@
+﻿{
+  "sections": [
+    {
+      "alias": "invoiceManager",
+      "name": "Invoice Manager"
+    }
+  ],
+  "dashboards": [
+    {
+      "alias": "invoiceManagerDashboad",
+      "view": "/App_Plugins/InvoiceManager/Index.html",
+      "sections": [ "invoiceManager" ],
+      "weight": -10
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/InvoiceManager/js/InvoiceManager.section.controller.js",
+    "~/App_Plugins/InvoiceManager/js/Invoice.section.controller.js",
+    "~/App_Plugins/InvoiceManager/js/Customers.section.controller.js",
+    "~/App_Plugins/InvoiceManager/js/Services/CustomerService.js",
+    "~/App_Plugins/InvoiceManager/js/Dialogs/CustomerDialog.js",
+    "~/App_Plugins/InvoiceManager/js/Editors/RadioGroup.js",
+    "~/App_Plugins/InvoiceManager/js/Services/InvoiceService.js",
+    "~/App_Plugins/InvoiceManager/js/Dialogs/InvoiceDialog.js",
+    "~/App_Plugins/InvoiceManager/js/Dialogs/InvoiceDetailDialog.js",
+    "~/App_Plugins/InvoiceManager/js/Editors/CustomerDropdownlist.js",
+    "~/App_Plugins/InvoiceManager/js/Editors/InvoiceCalculation.Controller.js"
+  ],
+  "css": [
+  ]
+}

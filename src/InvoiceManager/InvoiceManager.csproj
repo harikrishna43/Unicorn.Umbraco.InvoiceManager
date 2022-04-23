@@ -1,0 +1,75 @@
+<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ContentTargetFolders>.</ContentTargetFolders>
+        <Product>Invoice_Manager</Product>
+        <PackageId>Invoice_Manager</PackageId>
+        <Title>Invoice_Manager</Title>
+        <Description>...</Description>
+        <Product>...</Product>
+        <PackageTags>umbraco plugin package</PackageTags>
+        <RootNamespace>Invoice_Manager</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="PuppeteerSharp" Version="7.0.0" />
+        <PackageReference Include="Umbraco.Cms.Web.Website" Version="9.3.1" />
+        <PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.3.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="App_Plugins\Invoice_Manager\**\*.*">
+            <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+            <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+        </Content>
+        <None Include="build\**\*.*">
+            <Pack>True</Pack>
+            <PackagePath>buildTransitive</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="App_Plugins\InvoiceManager\Customers\Customers.html" />
+      <None Remove="App_Plugins\InvoiceManager\Dashboards\info.html" />
+      <None Remove="App_Plugins\InvoiceManager\Dialogs\Customer.html" />
+      <None Remove="App_Plugins\InvoiceManager\Dialogs\Invoice.html" />
+      <None Remove="App_Plugins\InvoiceManager\Dialogs\InvoiceDetails.html" />
+      <None Remove="App_Plugins\InvoiceManager\Editors\CustomerDropdownlist.html" />
+      <None Remove="App_Plugins\InvoiceManager\Editors\InvoiceCalculation.html" />
+      <None Remove="App_Plugins\InvoiceManager\Editors\RadioGroup.html" />
+      <None Remove="App_Plugins\InvoiceManager\Index.html" />
+      <None Remove="App_Plugins\InvoiceManager\Invoice\Invoice.html" />
+      <None Remove="App_Plugins\InvoiceManager\js\Dialogs\CustomerDialog.js" />
+      <None Remove="App_Plugins\InvoiceManager\js\Dialogs\InvoiceDetailDialog.js" />
+      <None Remove="App_Plugins\InvoiceManager\js\Dialogs\InvoiceDialog.js" />
+      <None Remove="App_Plugins\InvoiceManager\js\Editors\CustomerDropdownlist.js" />
+      <None Remove="App_Plugins\InvoiceManager\js\Editors\InvoiceCalculation.Controller.js" />
+      <None Remove="App_Plugins\InvoiceManager\js\Editors\RadioGroup.js" />
+      <None Remove="App_Plugins\InvoiceManager\js\Services\CustomerService.js" />
+      <None Remove="App_Plugins\InvoiceManager\js\Services\InvoiceService.js" />
+      <None Remove="App_Plugins\InvoiceManager\lang\en-US.xml" />
+      <None Remove="Services\znc44eob.5cd~" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="App_Plugins\InvoiceManager\Customers\Customers.html" />
+      <Content Include="App_Plugins\InvoiceManager\Dashboards\info.html" />
+      <Content Include="App_Plugins\InvoiceManager\Dialogs\Customer.html" />
+      <Content Include="App_Plugins\InvoiceManager\Dialogs\Invoice.html" />
+      <Content Include="App_Plugins\InvoiceManager\Dialogs\InvoiceDetails.html" />
+      <Content Include="App_Plugins\InvoiceManager\Editors\CustomerDropdownlist.html" />
+      <Content Include="App_Plugins\InvoiceManager\Editors\InvoiceCalculation.html" />
+      <Content Include="App_Plugins\InvoiceManager\Editors\RadioGroup.html" />
+      <Content Include="App_Plugins\InvoiceManager\Index.html" />
+      <Content Include="App_Plugins\InvoiceManager\Invoice\Invoice.html" />
+      <Content Include="App_Plugins\InvoiceManager\js\Dialogs\CustomerDialog.js" />
+      <Content Include="App_Plugins\InvoiceManager\js\Dialogs\InvoiceDetailDialog.js" />
+      <Content Include="App_Plugins\InvoiceManager\js\Dialogs\InvoiceDialog.js" />
+      <Content Include="App_Plugins\InvoiceManager\js\Editors\CustomerDropdownlist.js" />
+      <Content Include="App_Plugins\InvoiceManager\js\Editors\InvoiceCalculation.Controller.js" />
+      <Content Include="App_Plugins\InvoiceManager\js\Editors\RadioGroup.js" />
+      <Content Include="App_Plugins\InvoiceManager\js\Services\CustomerService.js" />
+      <Content Include="App_Plugins\InvoiceManager\js\Services\InvoiceService.js" />
+      <Content Include="App_Plugins\InvoiceManager\lang\en-US.xml" />
+    </ItemGroup>
+</Project>
