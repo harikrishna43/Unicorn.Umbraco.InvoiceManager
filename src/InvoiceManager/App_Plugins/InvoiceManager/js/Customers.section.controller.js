@@ -66,14 +66,6 @@
                     handler: vm.addCustomer
                 },
                 subButtons: []
-            },
-            {
-                alias: "refresh",
-                defaultButton: {
-                    labelKey: "info_refresh",
-                    handler: vm.reload
-                },
-                subButtons: []
             }
         ];
 

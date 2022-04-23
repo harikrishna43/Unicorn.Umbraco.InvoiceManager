@@ -159,13 +159,13 @@ namespace Invoice_Manager.Services
                 // Search by the text
                 if (string.IsNullOrWhiteSpace(options.Text) == false)
                 {
-                    if (int.TryParse(options.Text, out int customerId))
+                    if (int.TryParse(options.Text, out int id))
                     {
-                        sql = sql.Where<InvoiceDto>(x => x.CustomerId == customerId);
+                        sql = sql.Where<InvoiceDto, CustomerDto>((x,y) =>  x.InvoiceId==id || y.CustomerId==id);
                     }
                     else
                     {
-                        sql = sql.Where<InvoiceDto>(x => x.InvoiceNote.Contains(options.Text));
+                        sql = sql.Where<InvoiceDto, CustomerDto>((x,y) => y.Name.Contains(options.Text)||x.InvoiceNote.Contains(options.Text) );
                     }
                 }
                 sql = sql.Where<InvoiceDto>(x => x.IsDeleted == false);

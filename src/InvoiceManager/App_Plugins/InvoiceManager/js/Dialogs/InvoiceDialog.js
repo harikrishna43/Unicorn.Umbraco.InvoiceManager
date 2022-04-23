@@ -27,7 +27,7 @@
     if ($scope.model.invoice) {
 
         $scope.model.title = "Edit Invoice";
-        localizationService.localize("invoice_editInvoice").then(function (value) { $scope.model.title = value; });
+        localizationService.localize("invoice_detailInvoice").then(function (value) { $scope.model.title = value; });
 
         $scope.model.submitButtonLabelKey = "invoice_save";
 
@@ -124,10 +124,13 @@
         alias: "note",
         label: "Note",
         labelKey: "unvoice_propertyNote",
-        description: "dd some invoice notes",
+        description: "Add some invoice notes",
         descriptionKey: "invoice_propertyNotesDescription",
         view: `textbox`,
-        value: $scope.model.invoice && $scope.model.invoice.note ? $scope.model.invoice.note : ""
+        value: $scope.model.invoice && $scope.model.invoice.note ? $scope.model.invoice.note : "",
+        validation: {
+            mandatory: true,
+        }
     });
     $scope.model.advancedProperties.push({
         alias: "description",
@@ -136,7 +139,10 @@
         description: "Add some description about the invoice",
         descriptionKey: "invoice_propertyInvoiceDescDescription",
         view: `textbox`,
-        value: $scope.model.invoice && $scope.model.invoice.description ? $scope.model.invoice.description: "",
+        value: $scope.model.invoice && $scope.model.invoice.description ? $scope.model.invoice.description : "",
+        validation: {
+            mandatory: true,
+        }
     });
     
     $scope.model.advancedProperties.push({
@@ -146,7 +152,10 @@
         description: "Calculation Amount",
         descriptionKey: "invoice_propertyTotalAmountDescription",
         view: `/App_Plugins/InvoiceManager/Editors/InvoiceCalculation.html?v=${cacheBuster}`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata : vm.invocedata
+        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata : vm.invocedata,
+        validation: {
+            mandatory: true,
+        }
     });
 
     $scope.model.infoProperties = [];
@@ -173,7 +182,7 @@
                 label: "Phone",
                 labelKey: "invoice_propertyPhone",
                 view: `readonlyvalue`,
-                value: $scope.model.invoice ? $scope.model.invoice.phone : null,
+                value: $scope.model.invoice ? $scope.model.invoice.customer.phone : null,
                 readonly: true
             },
             {

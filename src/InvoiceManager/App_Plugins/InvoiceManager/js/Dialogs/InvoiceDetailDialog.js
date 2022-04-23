@@ -63,7 +63,7 @@
         alias: "status",
         label: "Invoice status",
         labelKey: "invoice_propertyInvoiceStatus",
-        description: "Specify invoice status",
+        description: "Invoice status",
         descriptionKey: "invoice_propertyInvoiceStatusDescription",
         view: `readonlyvalue`,
         value: $scope.model.invoice && $scope.model.invoice ? $scope.model.invoice.status==0?"Draft":"Created":""
@@ -85,7 +85,7 @@
         alias: "duedate",
         label: "Due Date",
         labelKey: "invoice_propertyDueDate",
-        description: "Specify invoice due date",
+        description: "Invoice due date",
         descriptionKey: "invoice_propertyDueDateDescription",
         value: $scope.model.invoice && $scope.model.invoice.duedate ? $scope.model.invoice.duedate : "",
         view: `readonlyvalue`,
@@ -96,7 +96,7 @@
         alias: "note",
         label: "Note",
         labelKey: "unvoice_propertyNote",
-        description: "dd some invoice notes",
+        description: "Invoice notes",
         descriptionKey: "invoice_propertyNotesDescription",
         view: `readonlyvalue`,
         value: $scope.model.invoice && $scope.model.invoice.note ? $scope.model.invoice.note : ""
@@ -237,7 +237,7 @@
 
     vm.infoApp = {
         alias: "info",
-        name: "Info",
+        name: "Customer",
         view: "nope",
         icon: "icon-info"
     };

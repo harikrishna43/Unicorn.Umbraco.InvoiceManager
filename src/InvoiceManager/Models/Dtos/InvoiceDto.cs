@@ -74,7 +74,8 @@ namespace Invoice_Manager.Models.Dtos
         public bool IsDeleted { get; set; }
 
         [ResultColumn]
-        [Reference(ReferenceType.OneToOne, ReferenceMemberName = "CustomerId")]
+        [References(typeof(CustomerDto))]
+        [Reference(ReferenceType.OneToOne, ReferenceMemberName = "CustomerId",ColumnName ="CustomerId")]
         public CustomerDto Customer { get; set; }
 
         /// <summary>

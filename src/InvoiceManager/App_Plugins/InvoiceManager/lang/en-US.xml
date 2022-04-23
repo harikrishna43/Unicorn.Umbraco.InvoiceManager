@@ -62,5 +62,8 @@
 	</area>
 	<area alias="invoice">
 		<key alias="createNewInvoice">Create new Invoice</key>
+		<key alias="editInvoice">Edit Invoice</key>
+		<key alias="save">Save</key>
+		<key alias="detailInvoice">Invoice's Details</key>
 	</area>
 </language>

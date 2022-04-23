@@ -8760,11 +8760,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Projects\\Plugins\\U9\\Umbraco.Our.InvoiceManager\\src\\InvoiceManager\\InvoiceManager.csproj",
-      "projectName": "Invoice_Manager",
-      "projectPath": "E:\\Projects\\Plugins\\U9\\Umbraco.Our.InvoiceManager\\src\\InvoiceManager\\InvoiceManager.csproj",
+      "projectUniqueName": "E:\\Projects\\Unicorn.Theme\\InvoiceManager\\InvoiceManager.csproj",
+      "projectName": "Unicorn.Umbraco.InvoiceManager",
+      "projectPath": "E:\\Projects\\Unicorn.Theme\\InvoiceManager\\InvoiceManager.csproj",
       "packagesPath": "C:\\Users\\krish\\.nuget\\packages\\",
-      "outputPath": "E:\\Projects\\Plugins\\U9\\Umbraco.Our.InvoiceManager\\src\\InvoiceManager\\obj\\",
+      "outputPath": "E:\\Projects\\Unicorn.Theme\\InvoiceManager\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

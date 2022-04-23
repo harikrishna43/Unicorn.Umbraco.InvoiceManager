@@ -19,11 +19,15 @@
             </umb-button-group>
         </umb-editor-sub-header-content-right>
     </umb-editor-sub-header>
-    <umb-box>
-        <umb-box-content>
+    
+        <umb-box-content >
             <div>
                 <div ng-class="{loading: vm.loading}">
                     <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+                    <umb-empty-state ng-if="!vm.loading && vm.customers.length == 0" position="center">
+                        <span ng-if="vm.activeFilters == 0">There has not yet been added any customer.</span>
+                        <span ng-if="vm.activeFilters > 0">Your search did not match any customer.</span>
+                    </umb-empty-state>
                     <table class="table list" ng-if="vm.customers.length > 0">
                         <thead>
                             <tr>
@@ -44,8 +48,8 @@
                         <tbody>
                             <tr ng-repeat="customer in vm.customers">
                                 <!--<td>
-                                    <span>{{customer.id}}</span>
-                                </td>-->
+                    <span>{{customer.id}}</span>
+                </td>-->
                                 <td>
                                     <span>{{customer.name}}</span>
                                 </td>
@@ -116,7 +120,5 @@
                 </div>
             </div>
         </umb-box-content>
-    </umb-box>
-
-
+    
 </div>

@@ -3,6 +3,12 @@
         <umb-editor-sub-header-content-left>
             <h3>Invoices</h3>
         </umb-editor-sub-header-content-left>
+        <umb-editor-sub-header-content-center>
+            <div class="filters">
+                <select style="margin-right: 10px;" ng-options="item as item.name for item in vm.types track by item.value" ng-model="vm.filters.type" no-dirty-check ng-change="vm.filterUpdated()"></select>
+                <input type="text" ng-model="vm.filters.text" no-dirty-check placeholder="typeToSearch" localize="placeholder"  ng-change="vm.filterUpdated()" />
+            </div>
+        </umb-editor-sub-header-content-center>
         <umb-editor-sub-header-content-right>
             <umb-button-group ng-repeat="bg in vm.buttonGroups"
                               button-style="{{bg.buttonStyle}}"
@@ -12,11 +18,15 @@
             </umb-button-group>
         </umb-editor-sub-header-content-right>
     </umb-editor-sub-header>
-    <umb-box>
-        <umb-box-content>
+    
+        <umb-box-content >
             <div>
                 <div ng-class="{loading: vm.loading}">
                     <umb-load-indicator ng-if="vm.loading"></umb-load-indicator>
+                    <umb-empty-state ng-if="!vm.loading && vm.invoices.length == 0" position="center">
+                        <span ng-if="vm.activeFilters == 0">There has not yet been added any invoice.</span>
+                        <span ng-if="vm.activeFilters > 0">Your search did not match any invoice.</span>
+                    </umb-empty-state>
                     <table class="table list" ng-if="vm.invoices.length > 0">
                         <thead>
                             <tr>
@@ -34,8 +44,8 @@
                         <tbody>
                             <tr ng-repeat="invoice in vm.invoices">
                                 <!--<td>
-                                    <span>{{invoice.invoiceid}}</span>
-                                </td>-->
+                    <span>{{invoice.invoiceid}}</span>
+                </td>-->
                                 <td>
                                     <span>{{invoice.invoicenumber}}</span>
                                 </td>
@@ -73,7 +83,7 @@
                                         {{vm.pagination.text}}
                                     </div>
                                 </th>
-                                <th colspan="6" class="tar">
+                                <th colspan="6" class="tar content-center">
                                     <div class="pagination">
                                         <ul>
                                             <li ng-class="{disabled: vm.pagination.page <= 1}">
@@ -98,5 +108,5 @@
                 </div>
             </div>
         </umb-box-content>
-    </umb-box>
+    
 </div>

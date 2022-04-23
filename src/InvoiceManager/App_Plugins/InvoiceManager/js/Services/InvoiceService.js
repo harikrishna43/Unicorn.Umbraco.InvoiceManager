@@ -304,11 +304,11 @@
 
             return umbRequestHelper.downloadFile(url).then(function () {
                 localizationService.localize("speechBubbles_documentTypeExportedSuccess").then(function (value) {
-                    notificationsService.success(value);
+                    notificationsService.success("Invoice was downloaded to PDF file");
                 });
             }, function (data) {
                 localizationService.localize("speechBubbles_documentTypeExportedError").then(function (value) {
-                    notificationsService.error(value);
+                    notificationsService.error("There are some server error to download invoice.");
                 });
             });
         },

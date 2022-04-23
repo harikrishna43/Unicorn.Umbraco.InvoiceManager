@@ -25,17 +25,11 @@
 
         $scope.model.submitButtonLabelKey = "customer_save";
 
-        //destionation = $scope.model.redirect.destination;
 
         $scope.model.hiddenProperties.push({
             alias: "id",
             value: $scope.model.customer.id
         });
-
-        //$scope.model.hiddenProperties.push({
-        //    alias: "key",
-        //    value: $scope.model.redirect.key
-        //});
 
     }
 
@@ -88,6 +82,9 @@
                     value: 1
                 }
             ]
+        },
+        validation: {
+            mandatory: true
         }
     });
 
@@ -99,6 +96,9 @@
         descriptionKey: "customer_propertyGSTNumberDescription",
         view: `textbox`,
         value: $scope.model.customer && $scope.model.customer.gstnumber ? $scope.model.customer.gstnumber : "",
+        validation: {
+            mandatory: true
+        }
     });
 
     $scope.model.properties.push({
@@ -109,6 +109,9 @@
         descriptionKey: "customer_propertyAddressDescription",
         view: `textarea`,
         value: $scope.model.customer && $scope.model.customer.address ? $scope.model.customer.address : "",
+        validation: {
+            mandatory: true
+        }
     });
     $scope.model.properties.push({
         alias: "city",
@@ -117,7 +120,10 @@
         description: "Add customer City",
         descriptionKey: "customer_propertyCityDescription",
         view: `textbox`,
-        value: $scope.model.customer && $scope.model.customer.city ? $scope.model.customer.city: "",
+        value: $scope.model.customer && $scope.model.customer.city ? $scope.model.customer.city : "",
+        validation: {
+            mandatory: true
+        }
     });
     $scope.model.properties.push({
         alias: "state",
@@ -127,6 +133,9 @@
         descriptionKey: "customer_propertyStateDescription",
         view: `textbox`,
         value: $scope.model.customer && $scope.model.customer.state ? $scope.model.customer.state : "",
+        validation: {
+            mandatory: true
+        }
     });
     
     $scope.model.properties.push({
@@ -137,6 +146,9 @@
         descriptionKey: "customer_propertyCountryDescription",
         view: `textbox`,
         value: $scope.model.customer && $scope.model.customer.country ? $scope.model.customer.country : "",
+        validation: {
+            mandatory: true
+        }
     });
 
     $scope.model.properties.push({
@@ -147,6 +159,9 @@
         descriptionKey: "customer_propertyZipCodeDescription",
         view: `textbox`,
         value: $scope.model.customer && $scope.model.customer.zipcode ? $scope.model.customer.zipcode : "",
+        validation: {
+            mandatory: true
+        }
     });//
 
 

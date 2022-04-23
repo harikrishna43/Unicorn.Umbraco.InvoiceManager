@@ -74,14 +74,6 @@
                     handler: vm.createInvoice
                 },
                 subButtons: []
-            },
-            {
-                alias: "refresh",
-                defaultButton: {
-                    labelKey: "info_refresh",
-                    handler: vm.refresh
-                },
-                subButtons: []
             }
         ];
 
