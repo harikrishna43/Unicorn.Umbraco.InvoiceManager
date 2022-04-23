@@ -23,7 +23,7 @@
 		<PackageId>Unicorn.Umbraco.InvoiceManager</PackageId>
 		<PackageTags>Umbraco, Invoice,Customer, Unicorn, Madnat Technologies</PackageTags>
 		<PackageLicenseExpression>Commercial</PackageLicenseExpression>
-		<PackageProjectUrl>https://packages.skybrud.dk/skybrud.umbraco.redirects/</PackageProjectUrl>
+		<PackageProjectUrl>https://github.com/harikrishna43/Unicorn.Umbraco.InvoiceManager</PackageProjectUrl>
 		<PackageIcon></PackageIcon>
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/harikrishna43/Unicorn.Umbraco.InvoiceManager</RepositoryUrl>
