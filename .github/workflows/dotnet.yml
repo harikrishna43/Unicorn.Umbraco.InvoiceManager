@@ -18,8 +18,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore src/Unicorn.Umbraco.InvoiceManager/Unicorn.Umbraco.InvoiceManager.sln
+      run: dotnet restore Unicorn.Umbraco.InvoiceManager.sln
     - name: Build
-      run: dotnet build --no-restore src/Unicorn.Umbraco.InvoiceManager/Unicorn.Umbraco.InvoiceManager.sln
+      run: dotnet build --no-restore Unicorn.Umbraco.InvoiceManager.sln
     - name: release package
-      run: dotnet build src/InvoiceManager.sln --configuration Release /t:rebuild /t:pack -p:BuildTools=1 -p:PackageOutputPath=/releases/nuget
+      run: dotnet build Unicorn.Umbraco.InvoiceManager.sln --configuration Release /t:rebuild /t:pack -p:BuildTools=1 -p:PackageOutputPath=/releases/nuget
