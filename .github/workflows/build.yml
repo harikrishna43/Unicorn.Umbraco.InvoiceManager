@@ -43,8 +43,8 @@ jobs:
       - name: Build
         run: dotnet build ${{ env.PROJECT }} -c Release -p:ContinuousIntegrationBuild=true --no-restore
 
-      - name: Setup UmbPack
-        run: dotnet tool install --tool-path $(Split-Path ${{ env.PROJECT }}) Umbraco.Tools.Packages
+      #- name: Setup UmbPack
+      #  run: dotnet tool install --tool-path $(Split-Path ${{ env.PROJECT }}) Umbraco.Tools.Packages
 
       - name: Pack
         run: dotnet pack ${{ env.PROJECT }} -c Release -o ${{ env.OUTPUT }} --no-restore --no-build
