@@ -1,0 +1,31 @@
+﻿{
+  "sections": [
+    {
+      "alias": "Unicorn.Umbraco.InvoiceManager",
+      "name": "Invoice Manager"
+    }
+  ],
+  "dashboards": [
+    {
+      "alias": "Unicorn.Umbraco.InvoiceManagerDashboad",
+      "view": "/App_Plugins/Unicorn.Umbraco.InvoiceManager/Index.html",
+      "sections": [ "invoiceManager" ],
+      "weight": -10
+    }
+  ],
+  "javascript": [
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/InvoiceManager.section.controller.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Invoice.section.controller.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Customers.section.controller.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Services/CustomerService.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Dialogs/CustomerDialog.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/RadioGroup.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Services/InvoiceService.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Dialogs/InvoiceDialog.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Dialogs/InvoiceDetailDialog.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/CustomerDropdownlist.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/InvoiceCalculation.Controller.js"
+  ],
+  "css": [
+  ]
+}

@@ -26,4 +26,8 @@
 **/App_Data/Models/ood.flag
 *.dll
 *.cache
-Invoice Manager/obj/*
+src/Unicorn.Umbraco.InvoiceManager/obj/*
+src/InvoiceManager/.vs/InvoiceManager/v17/.suo
+src/.vs/Unicorn.Umbraco.InvoiceManager/v17/.suo
+*.v2
+src/Unicorn.Umbraco.InvoiceManager/bin/*
