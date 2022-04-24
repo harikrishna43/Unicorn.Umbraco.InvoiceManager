@@ -1,27 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<ContentTargetFolders>.</ContentTargetFolders>
-		<Product>InvoiceManager</Product>
-		<PackageId>InvoiceManager_V1</PackageId>
-		<Title>Invoice Manager</Title>
-		<Description>Create invoice in umbraco 9</Description>
-		<Product>Umbraco 9 Package</Product>
-		<PackageTags>umbraco plugin package</PackageTags>
-		<RootNamespace>Unicorn.Umbraco.InvoiceManager</RootNamespace>
-	</PropertyGroup>
-	<PropertyGroup>
-		<Version>1.0.0</Version>
-		<Authors>Harikrishna Parmar</Authors>
-		<Company>Unicorn - Madnat Technologies</Company>
-		<Description>Invoice manager for Umbraco 9.</Description>
-		<Copyright>Copyright © 2022</Copyright>
-	</PropertyGroup>
-
-	<!-- Information for the NuGet package -->
-	<PropertyGroup>
+		<ContentTargetFolders>App_Plugins</ContentTargetFolders>
+		<Product>Unicorn.Umbraco.InvoiceManager</Product>
 		<PackageId>Unicorn.Umbraco.InvoiceManager</PackageId>
 		<PackageTags>Umbraco, Invoice,Customer, Unicorn, Madnat Technologies</PackageTags>
+		<Title>Unicorn.Umbraco.InvoiceManager</Title>
+		<Description>Create invoice in umbraco 9</Description>
+		<Product>Umbraco 9 Package</Product>
+		<RootNamespace>Unicorn.Umbraco.InvoiceManager</RootNamespace>
+		<Version>1.0.3</Version>
+		<Authors>Harikrishna Parmar</Authors>
+		<Company>Unicorn - Madnat Technologies</Company>
+		<Copyright>Copyright © 2022</Copyright>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<IncludeSymbols>true</IncludeSymbols>
+		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
 		<PackageProjectUrl>https://github.com/harikrishna43/Unicorn.Umbraco.InvoiceManager</PackageProjectUrl>
 		<PackageIcon></PackageIcon>
 		<RepositoryType>git</RepositoryType>
@@ -31,58 +25,177 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
+	<Target Name="UmbPack" AfterTargets="Pack">
+		<Exec Command="umbpack pack package.xml -v $(Version) -o $(PackageOutputPath) -p Configuration=$(Configuration)" />
+	</Target>
+	
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>
 		<PackageReference Include="PuppeteerSharp" Version="7.0.0" />
 		<PackageReference Include="Umbraco.Cms.Web.Website" Version="9.3.1" />
 		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.3.1" />
 	</ItemGroup>
-
 	<ItemGroup>
-		<Content Include="App_Plugins\Unicorn.Umbraco.InvoiceManager\**\*.*">
+		<Content Include="content\App_Plugins\**\*.*">
+			<PackagePath>content\App_Plugins</PackagePath>
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 			<CopyToPublishDirectory>Always</CopyToPublishDirectory>
 		</Content>
 		<None Include="build\**\*.*">
 			<Pack>True</Pack>
-			<PackagePath>build</PackagePath>
+			<PackagePath>buildTransitive</PackagePath>
 		</None>
 	</ItemGroup>
-	<ItemGroup>
-		<None Include="build\**\*.*">
-			<Pack>True</Pack>
-			<PackagePath>build</PackagePath>
-		</None>
-	</ItemGroup>
-	<ItemGroup>
-	  <Content Remove="build/InvoiceManager.targets" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Content Remove="build/InvoiceManager.targets" />
-	</ItemGroup>
+	
+	
 	<!-- Include the targets file -->
 	<ItemGroup>
 		<Content Include="build/$(AssemblyName).targets" PackagePath="build\$(AssemblyName).targets" />
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Customers\Customers.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Dashboards\info.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\Customer.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\Invoice.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\InvoiceDetails.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\CustomerDropdownlist.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\InvoiceCalculation.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\RadioGroup.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Index.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\InvoiceTemplate\invoice.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Invoice\Invoice.html">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Customers.section.controller.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\CustomerDialog.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\InvoiceDetailDialog.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\InvoiceDialog.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\CustomerDropdownlist.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\InvoiceCalculation.Controller.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\RadioGroup.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Invoice.section.controller.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\InvoiceManager.section.controller.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Services\CustomerService.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Services\InvoiceService.js">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\lang\en-US.xml">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
+		<Content Include="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\package.manifest">
+		  <PackagePath>App_Plugins</PackagePath>
+		  <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+		  <CopyToPublishDirectory>Always</CopyToPublishDirectory>
+		</Content>
 	</ItemGroup>
 	<ItemGroup>
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Customers\Customers.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Dashboards\info.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\Customer.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\Invoice.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\InvoiceDetails.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\CustomerDropdownlist.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\InvoiceCalculation.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\RadioGroup.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Index.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\Invoice\Invoice.html" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\CustomerDialog.js" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\InvoiceDetailDialog.js" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\InvoiceDialog.js" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\CustomerDropdownlist.js" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\InvoiceCalculation.Controller.js" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\RadioGroup.js" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Services\CustomerService.js" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Services\InvoiceService.js" />
-		<None Remove="App_Plugins\Unicorn.Umbraco.InvoiceManager\lang\en-US.xml" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Customers\Customers.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Dashboards\info.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\Customer.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\Invoice.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Dialogs\InvoiceDetails.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\CustomerDropdownlist.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\InvoiceCalculation.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Editors\RadioGroup.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Index.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\InvoiceTemplate\invoice.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Invoice\Invoice.html" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Customers.section.controller.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\CustomerDialog.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\InvoiceDetailDialog.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Dialogs\InvoiceDialog.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\CustomerDropdownlist.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\InvoiceCalculation.Controller.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Editors\RadioGroup.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Invoice.section.controller.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\InvoiceManager.section.controller.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Services\CustomerService.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\js\Services\InvoiceService.js" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\lang\en-US.xml" />
+		<None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\package.manifest" />
 	</ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <language>
   <area alias="section">
-    <key alias="invoiceManager">Invoice Manager</key>
+    <key alias="unicornUmbracoInvoiceManager">Invoice Manager</key>
   </area>
 	<area alias="info">
 		<key alias="imheading">Invoice manager</key>

@@ -14,20 +14,20 @@
                     'name': 'Info',
                     'alias': 'default',
                     'icon': 'icon-sprout',
-                    'view': Umbraco.Sys.ServerVariables.umbracoSettings.appPluginsPath + '/InvoiceManager/Dashboards/info.html',
+                    'view': Umbraco.Sys.ServerVariables.umbracoSettings.appPluginsPath + '/Unicorn.Umbraco.InvoiceManager/Dashboards/info.html',
                     'active': true
                 },
                 {
                     'name': 'Customers',
                     'alias': 'customers',
                     'icon': 'icon-users',
-                    'view': Umbraco.Sys.ServerVariables.umbracoSettings.appPluginsPath + '/InvoiceManager/Customers/customers.html'
+                    'view': Umbraco.Sys.ServerVariables.umbracoSettings.appPluginsPath + '/Unicorn.Umbraco.InvoiceManager/Customers/customers.html'
                 },
                 {
                     'name': 'Invoices',
                     'alias': 'invoices',
                     'icon': 'icon-bill',
-                    'view': Umbraco.Sys.ServerVariables.umbracoSettings.appPluginsPath + '/InvoiceManager/Invoice/Invoice.html'
+                    'view': Umbraco.Sys.ServerVariables.umbracoSettings.appPluginsPath + '/Unicorn.Umbraco.InvoiceManager/Invoice/Invoice.html'
                 }
             ]
         }

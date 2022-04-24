@@ -167,7 +167,7 @@
 
             const o = {
                 size: "small",
-                view: `/App_Plugins/InvoiceManager/Dialogs/Invoice.html?v=${cacheBuster}`,
+                view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Dialogs/Invoice.html?v=${cacheBuster}`,
                 options: options,
                 submit: function(value) {
                     if (options.callback) options.callback(value);
@@ -191,7 +191,7 @@
 
             editorService.open({
 	            size: "medium",
-                view: `/App_Plugins/InvoiceManager/Dialogs/Invoice.html?v=${cacheBuster}`,
+                view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Dialogs/Invoice.html?v=${cacheBuster}`,
                 invoice: invoice,
                 options: options,
                 submit: function (value) {
@@ -211,7 +211,7 @@
 
             editorService.open({
                 size: "medium",
-                view: `/App_Plugins/InvoiceManager/Dialogs/InvoiceDetails.html?v=${cacheBuster}`,
+                view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Dialogs/InvoiceDetails.html?v=${cacheBuster}`,
                 invoice: invoice,
                 options: options,
                 submit: function (value) {

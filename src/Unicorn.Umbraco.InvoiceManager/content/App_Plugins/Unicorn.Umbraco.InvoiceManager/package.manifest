@@ -1,15 +1,15 @@
 ﻿{
   "sections": [
     {
-      "alias": "Unicorn.Umbraco.InvoiceManager",
+      "alias": "unicornUmbracoInvoiceManager",
       "name": "Invoice Manager"
     }
   ],
   "dashboards": [
     {
-      "alias": "Unicorn.Umbraco.InvoiceManagerDashboad",
+      "alias": "unicornUmbracoInvoiceManagerDashboad",
       "view": "/App_Plugins/Unicorn.Umbraco.InvoiceManager/Index.html",
-      "sections": [ "invoiceManager" ],
+      "sections": [ "unicornUmbracoInvoiceManager" ],
       "weight": -10
     }
   ],

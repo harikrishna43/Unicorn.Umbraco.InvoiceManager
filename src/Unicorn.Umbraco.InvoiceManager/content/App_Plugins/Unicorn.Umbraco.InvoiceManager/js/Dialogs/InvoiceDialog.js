@@ -54,7 +54,7 @@
         labelKey: "invoice_propertyCustomerId",
         description: "Select Customer",
         descriptionKey: "invoice_propertycustomerIdDescription",
-        view: `/App_Plugins/InvoiceManager/Editors/CustomerDropdownlist.html?v=${cacheBuster}`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/CustomerDropdownlist.html?v=${cacheBuster}`,
         value: $scope.model.invoice && $scope.model.invoice.customer ? $scope.model.invoice.customer : null,
         validation: {
             mandatory: true
@@ -67,7 +67,7 @@
         labelKey: "invoice_propertyInvoiceStatus",
         description: "Specify invoice status",
         descriptionKey: "invoice_propertyInvoiceStatusDescription",
-        view: `/App_Plugins/InvoiceManager/Editors/RadioGroup.html?v=${cacheBuster}`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/RadioGroup.html?v=${cacheBuster}`,
         value: $scope.model.invoce && $scope.model.invoice.status ? $scope.model.invoice.status: 0,
         config: {
             options: [
@@ -151,7 +151,7 @@
         labelKey: "invoice_propertyTotalAmount",
         description: "Calculation Amount",
         descriptionKey: "invoice_propertyTotalAmountDescription",
-        view: `/App_Plugins/InvoiceManager/Editors/InvoiceCalculation.html?v=${cacheBuster}`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/InvoiceCalculation.html?v=${cacheBuster}`,
         value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata : vm.invocedata,
         validation: {
             mandatory: true,

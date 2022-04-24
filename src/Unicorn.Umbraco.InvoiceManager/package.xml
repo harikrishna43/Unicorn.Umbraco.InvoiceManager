@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<umbPackage>
+	<info>
+		<package>
+			<name>Unicorn.Umbraco.InvoiceManager</name>
+			<licence></licence>
+			<url></url>
+			<requirements type="strict">
+				<major>1</major>
+				<minor>0</minor>
+				<patch>0</patch>
+			</requirements>
+		</package>
+		<author>
+			<name>Harikrishna Parmar</name>
+			<website>https://www.harikrishnaparmar.co.in</website>
+		</author>
+		<readme><![CDATA[A package that will help to create invoices for customer]]></readme>
+	</info>
+	<files>
+		<folder path="content/App_Plugins/Unicorn.Umbraco.InvoiceManager" orgPath="App_Plugins/Unicorn.Umbraco.InvoiceManager" />
+		<file path="bin/$Configuration$/net6.0/Unicorn.Umbraco.InvoiceManager.dll" orgPath="bin/Unicorn.Umbraco.InvoiceManager.dll" />
+	</files>
+</umbPackage>
+

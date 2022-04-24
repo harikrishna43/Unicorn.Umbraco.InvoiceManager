@@ -67,7 +67,7 @@
         labelKey: "customer_propertyCustomerType",
         description: "Specify the Customer type",
         descriptionKey: "customer_propertyCustomerTypeDescription",
-        view: `/App_Plugins/InvoiceManager/Editors/RadioGroup.html?v=${cacheBuster}`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/RadioGroup.html?v=${cacheBuster}`,
         value: $scope.model.customer && $scope.model.customer.customertype ? $scope.model.customer.customertype: 0,
         config: {
             options: [
