@@ -7,6 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unicorn.Umbraco.InvoiceMana
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12B07072-62A5-415B-BB90-7002718AA395}"
 	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		.github\workflows\build.yml = .github\workflows\build.yml
+		debug.bat = debug.bat
+		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
+		.github\workflows\prepare-release.yml = .github\workflows\prepare-release.yml
+		.github\workflows\publish-release.yml = .github\workflows\publish-release.yml
+		.github\workflows\publish.yml = .github\workflows\publish.yml
+		release.bat = release.bat
+		unicorn.invoicemanager.build.json = unicorn.invoicemanager.build.json
 		src\version.json = src\version.json
 	EndProjectSection
 EndProject
