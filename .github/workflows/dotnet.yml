@@ -23,8 +23,8 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore ${{ env.PROJECT }}
+      run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore ${{ env.PROJECT }}
+      run: dotnet build ${{ env.PROJECT }} --no-restore ${{ env.PROJECT }}
     - name: release package
       run: dotnet build ${{ env.PROJECT }} --configuration Release /t:rebuild /t:pack -p:BuildTools=1 -p:PackageOutputPath=/releases/nuget
