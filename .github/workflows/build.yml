@@ -1,0 +1,56 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
+  workflow_call:
+
+env:
+  DOTNET_NOLOGO: true
+  DOTNET_GENERATE_ASPNET_CERTIFICATE: false
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+  PROJECT: ./src/Unicorn.Umbraco.InvoiceManager/Unicorn.Umbraco.InvoiceManager.csproj
+  OUTPUT: ./dist
+
+jobs:
+  build:
+    name: Build
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
+      - name: Restore
+        run: dotnet restore ${{ env.PROJECT }} --locked-mode
+
+      - name: Build
+        run: dotnet build ${{ env.PROJECT }} -c Release -p:ContinuousIntegrationBuild=true --no-restore
+
+      - name: Setup UmbPack
+        run: dotnet tool install --tool-path $(Split-Path ${{ env.PROJECT }}) Umbraco.Tools.Packages
+
+      - name: Pack
+        run: dotnet pack ${{ env.PROJECT }} -c Release -o ${{ env.OUTPUT }} --no-restore --no-build
+        
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: packages
+          path: ${{ env.OUTPUT }}

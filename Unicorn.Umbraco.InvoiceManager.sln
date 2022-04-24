@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Unicorn.Umbraco.InvoiceManager", "src\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager.csproj", "{DCB7319C-33CB-4B9E-A10A-D875A6E20E4B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{12B07072-62A5-415B-BB90-7002718AA395}"
+	ProjectSection(SolutionItems) = preProject
+		src\version.json = src\version.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DCB7319C-33CB-4B9E-A10A-D875A6E20E4B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DCB7319C-33CB-4B9E-A10A-D875A6E20E4B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DCB7319C-33CB-4B9E-A10A-D875A6E20E4B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DCB7319C-33CB-4B9E-A10A-D875A6E20E4B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {ADA64A3B-FA2A-44CC-B7BC-2B12BA10E517}
+	EndGlobalSection
+EndGlobal

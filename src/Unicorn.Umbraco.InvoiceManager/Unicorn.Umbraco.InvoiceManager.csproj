@@ -25,9 +25,9 @@
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 	</PropertyGroup>
 
-	<Target Name="UmbPack" AfterTargets="Pack">
+	<!--<Target Name="UmbPack" AfterTargets="Pack">
 		<Exec Command="umbpack pack package.xml -v $(Version) -o $(PackageOutputPath) -p Configuration=$(Configuration)" />
-	</Target>
+	</Target>-->
 	
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>

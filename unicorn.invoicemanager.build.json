@@ -65,8 +65,8 @@
             ]
           },
           {
-            "source": "src/{packageName}/App_Plugins/InvoiceManager",
-            "destination": "App_Plugins/InvoiceManager/",
+            "source": "src/{packageName}/App_Plugins/Unicorn.Umbraco.InvoiceManager",
+            "destination": "App_Plugins/Unicorn.Umbraco.InvoiceManager/",
             "patterns": [
               "**/*.js",
               "**/*.css",
