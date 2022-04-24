@@ -21,5 +21,5 @@ jobs:
       run: dotnet restore src/InvoiceManager.sln
     - name: Build
       run: dotnet build --no-restore src/InvoiceManager.sln
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: release package
+      run: dotnet build src/InvoiceManager.sln --configuration Release /t:rebuild /t:pack -p:BuildTools=1 -p:PackageOutputPath=/releases/nuget
