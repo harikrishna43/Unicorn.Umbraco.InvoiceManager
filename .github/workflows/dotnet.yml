@@ -14,7 +14,7 @@ env:
 jobs:
   build:
 
-    runs-on:  ubuntu-latest
+    runs-on:  windows-latest
 
     steps:
     - uses: actions/checkout@v3
@@ -25,10 +25,10 @@ jobs:
         dotnet-version: 6.0.x
 
     - name: Cache NuGet packages
-      uses: actions/cache@v2
+      uses: actions/cache@v1
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/Unicorn.Umbraco.InvoiceManager.csproj') }}
         restore-keys: |
             ${{ runner.os }}-nuget-
     - name: Restore dependencies
