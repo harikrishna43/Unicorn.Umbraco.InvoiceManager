@@ -22,7 +22,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v2
       with:
-        dotnet-version: '6.0.0'
+        dotnet-version: 6.0.x
 
     - name: Cache NuGet packages
       uses: actions/cache@v2
@@ -34,6 +34,6 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build ${{ env.PROJECT }} --no-restore ${{ env.PROJECT }}
+      run: dotnet build ${{ env.PROJECT }} --no-restore
     - name: release package
       run: dotnet build ${{ env.PROJECT }} --configuration Release /t:rebuild /t:pack -p:BuildTools=1 -p:PackageOutputPath=/releases/nuget

@@ -21,7 +21,7 @@
 		<RepositoryType>git</RepositoryType>
 		<RepositoryUrl>https://github.com/harikrishna43/Unicorn.Umbraco.InvoiceManager</RepositoryUrl>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<!--<PackageLicenseExpression>Commercial</PackageLicenseExpression>-->
+		<PackageLicenseExpression>Commercial</PackageLicenseExpression>
 		<PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 	</PropertyGroup>
