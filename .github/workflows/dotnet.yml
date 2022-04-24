@@ -28,7 +28,7 @@ jobs:
       uses: actions/cache@v1
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/Unicorn.Umbraco.InvoiceManager.csproj') }}
+        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
 
     - name: Restore dependencies
       run: dotnet restore
