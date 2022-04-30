@@ -27,34 +27,34 @@ namespace Unicorn.Umbraco.InvoiceManager.Composer
     {
         public void Compose(IUmbracoBuilder builder)
         {
-            builder.Services.AddUnique<CustomerServiceDependencies>();
-            builder.Services.AddUnique<InvoiceServiceDependencies>();
+            builder.Services.AddSingleton<CustomerServiceDependencies>();
+            builder.Services.AddSingleton<InvoiceServiceDependencies>();
             builder.AddNotificationHandler<UmbracoApplicationStartingNotification, ExecuteMigration>();
-            builder.Services.AddUnique<InvoiceManagerBackOfficeHelperDependencies>();
+            builder.Services.AddSingleton<InvoiceManagerBackOfficeHelperDependencies>();
             builder.AddNotificationHandler<ServerVariablesParsingNotification, ServerVariablesParsingHandler>();
             //customer
-            builder.Services.AddUnique<ICustomerService, CustomerService>();
-            builder.Services.AddUnique<ICustomer, Customer>();
-            builder.Services.AddUnique<ICommandDispatcher, CommandDispatcher>();
-            builder.Services.AddUnique<IQueryDispatcher, QueryDispatcher>();
-            builder.Services.AddUnique<ICommand,AddCustomerCommand>();
-            builder.Services.AddUnique<ICommandHandler<AddCustomerCommand>, AddCustomerCommandHandler>();
-            builder.Services.AddUnique<ICommandHandler<EditCustomerCommand>, EditCustomerCommandHandler>();
-            builder.Services.AddUnique<IQueryHandler<GetCustomerQuery, CustomerSearchResultQuery>, GetCustomerHandler>();
-            builder.Services.AddUnique<IQueryHandler<GetAllCustomerQuery, ICustomer[]>, GetAllCustomerHandler>();
-            builder.Services.AddUnique<ICommandHandler<DeleteCustomerCommand>, DeleteCustomerCommandHandler>();
+            builder.Services.AddSingleton<ICustomerService, CustomerService>();
+            builder.Services.AddSingleton<ICustomer, Customer>();
+            builder.Services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
+            builder.Services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
+            builder.Services.AddSingleton<ICommand,AddCustomerCommand>();
+            builder.Services.AddSingleton<ICommandHandler<AddCustomerCommand>, AddCustomerCommandHandler>();
+            builder.Services.AddSingleton<ICommandHandler<EditCustomerCommand>, EditCustomerCommandHandler>();
+            builder.Services.AddSingleton<IQueryHandler<GetCustomerQuery, CustomerSearchResultQuery>, GetCustomerHandler>();
+            builder.Services.AddSingleton<IQueryHandler<GetAllCustomerQuery, ICustomer[]>, GetAllCustomerHandler>();
+            builder.Services.AddSingleton<ICommandHandler<DeleteCustomerCommand>, DeleteCustomerCommandHandler>();
             //invoices
-            builder.Services.AddUnique<IInvoiceService, InvoiceServices>();
-            builder.Services.AddUnique<IInvoice, Invoice>();
-            builder.Services.AddUnique<ICommandDispatcher, CommandDispatcher>();
-            builder.Services.AddUnique<IQueryDispatcher, QueryDispatcher>();
-            builder.Services.AddUnique<ICommand, CreateInvoiceCommand>();
-            builder.Services.AddUnique<ICommandHandler<CreateInvoiceCommand>, CreateInvoiceCommandHandler>();
-            builder.Services.AddUnique<ICommandHandler<EditInvoiceCommand>, EditInvoiceCommandHandler>();
-            builder.Services.AddUnique<IQueryHandler<GetInvoiceQuery, InvoiceSearchResultQuery>, GetInvoiceHandler>();
-            builder.Services.AddUnique<ICommandHandler<DeleteInvoiceCommand>, DeleteInvoiceCommandHandler>();
-            builder.Services.AddUnique<IQueryHandler<DownloadInvoiceQuery, Queries.Invoices.InvoiceData>, DownloadInvoiceHandler>();
-            builder.Services.AddUnique<InvoiceManagerBackOfficeHelper>();
+            builder.Services.AddSingleton<IInvoiceService, InvoiceServices>();
+            builder.Services.AddSingleton<IInvoice, Invoice>();
+            builder.Services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
+            builder.Services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
+            builder.Services.AddSingleton<ICommand, CreateInvoiceCommand>();
+            builder.Services.AddSingleton<ICommandHandler<CreateInvoiceCommand>, CreateInvoiceCommandHandler>();
+            builder.Services.AddSingleton<ICommandHandler<EditInvoiceCommand>, EditInvoiceCommandHandler>();
+            builder.Services.AddSingleton<IQueryHandler<GetInvoiceQuery, InvoiceSearchResultQuery>, GetInvoiceHandler>();
+            builder.Services.AddSingleton<ICommandHandler<DeleteInvoiceCommand>, DeleteInvoiceCommandHandler>();
+            builder.Services.AddSingleton<IQueryHandler<DownloadInvoiceQuery, Queries.Invoices.InvoiceData>, DownloadInvoiceHandler>();
+            builder.Services.AddSingleton<InvoiceManagerBackOfficeHelper>();
             builder.WithCollectionBuilder<MapDefinitionCollectionBuilder>().Add<CustomerMappingDefinition>();
 
         }

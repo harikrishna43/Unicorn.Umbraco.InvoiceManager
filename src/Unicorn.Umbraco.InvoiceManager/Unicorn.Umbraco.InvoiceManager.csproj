@@ -9,7 +9,7 @@
 		<Description>Create invoice in umbraco 9</Description>
 		<Product>Umbraco 9 Package</Product>
 		<RootNamespace>Unicorn.Umbraco.InvoiceManager</RootNamespace>
-		<Version>1.0.3</Version>
+		<Version>1.0.4</Version>
 		<Authors>Harikrishna Parmar</Authors>
 		<Company>Unicorn - Madnat Technologies</Company>
 		<Copyright>Copyright © 2022</Copyright>
@@ -26,9 +26,9 @@
 		<RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
 	</PropertyGroup>
 
-	<!--<Target Name="UmbPack" AfterTargets="Pack">
+	<Target Name="UmbPack" AfterTargets="Pack">
 		<Exec Command="umbpack pack package.xml -v $(Version) -o $(PackageOutputPath) -p Configuration=$(Configuration)" />
-	</Target>-->
+	</Target>
 	
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>

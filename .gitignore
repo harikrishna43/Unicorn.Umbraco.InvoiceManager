@@ -32,3 +32,4 @@ src/.vs/Unicorn.Umbraco.InvoiceManager/v17/.suo
 *.v2
 src/Unicorn.Umbraco.InvoiceManager/bin/*
 .vs/Unicorn.Umbraco.InvoiceManager/v17/.suo
+.vs/Unicorn.Umbraco.InvoiceManager/v17/*
