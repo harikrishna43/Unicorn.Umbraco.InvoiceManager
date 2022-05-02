@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net6.0": {
+    ".NETCoreApp,Version=v5.0": {
       "PuppeteerSharp": {
         "type": "Direct",
         "requested": "[7.0.0, )",
