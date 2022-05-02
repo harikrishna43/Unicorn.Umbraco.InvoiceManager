@@ -39,7 +39,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Helpers
         #region Member methods
 
         /// <summary>
-        /// Returns the localized value for the key with the specified <paramref name="alias"/> within the <c>redirects</c> area.
+        /// Returns the localized value for the key with the specified <paramref name="alias"/> within the <c>Customer</c> area.
         /// </summary>
         /// <param name="alias">The alias of the key.</param>
         /// <returns>The localized value.</returns>
@@ -60,7 +60,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Helpers
         }
 
         /// <summary>
-        /// Returns the access rules for <see cref="RedirectsDashboard"/>.
+        /// Returns the access rules for <see cref="CustomerDashboard"/>.
         /// </summary>
         /// <returns>An array of <see cref="IAccessRule"/>.</returns>
         public virtual IAccessRule[] GetDashboardAccessRules()
@@ -95,7 +95,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Helpers
         }
 
         /// <summary>
-        /// Returns a dictonary with server variables for this pacakge, available through <c>Umbraco.Sys.ServerVariables.skybrud.redirects</c> in the backoffice.
+        /// 
         /// </summary>
         /// <returns>An instance of <see cref="Dictionary{TKey,TValue}"/>.</returns>
         public virtual Dictionary<string, object> GetServerVariables()

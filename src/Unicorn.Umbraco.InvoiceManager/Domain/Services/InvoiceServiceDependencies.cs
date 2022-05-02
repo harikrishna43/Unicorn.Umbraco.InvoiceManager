@@ -13,9 +13,9 @@ namespace Unicorn.Umbraco.InvoiceManager.Services{
     public class InvoiceServiceDependencies {
 
         #region Properties
-        
+
         /// <summary>
-        /// Gets the reference to the current <see cref="ILogger{RedirectsService}"/>.
+        /// Gets the reference to the current <see cref="ILogger{InvoiceServices}"/>.
         /// </summary>
         internal ILogger<InvoiceServices> Logger { get; }
 

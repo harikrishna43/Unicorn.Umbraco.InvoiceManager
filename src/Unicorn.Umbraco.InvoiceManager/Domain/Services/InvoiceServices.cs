@@ -57,16 +57,12 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
 
         public void DeleteInvoice(IInvoice invoice)
         {
-            // Some input validation
             if (invoice == null) throw new ArgumentNullException(nameof(invoice));
 
-            // This implementation only supports the "Redirect class"
             if (invoice is not Invoice r) throw new ArgumentException($"Invoice type is not supported: {invoice.GetType()}", nameof(invoice));
 
-            // Create a new scope
             using IScope scope = _scopeProvider.CreateScope();
 
-            // Remove the redirect from the database
             try
             {
                 r.Dto.IsDeleted = true;
@@ -78,13 +74,11 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
                 throw new Exception("Unable to delete invoice from database.", ex);
             }
 
-            // Complete the scope
             scope.Complete();
         }
 
         public IEnumerable<IInvoice> GetAll()
         {
-            // Create a new scope
             using var scope = _scopeProvider.CreateScope();
 
             // Generate the SQL for the query
@@ -169,7 +163,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
                     }
                 }
                 sql = sql.Where<InvoiceDto>(x => x.IsDeleted == false);
-                // Order the redirects
                 sql = sql.OrderByDescending<InvoiceDto>(x => x.DateModified);
 
                 var adata= scope.Database.FetchMultiple<InvoiceDto, CustomerDto>(sql);
@@ -204,10 +197,8 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
             // Some input validation
             if (invoice == null) throw new ArgumentNullException(nameof(invoice));
 
-            // This implementation only supports the "Redirect class"
             if (invoice is not Invoice c) throw new ArgumentException($"Customer type is not supported: {invoice.GetType()}", nameof(invoice));
 
-            // Check whether another redirect matches the new URL and query string
             IInvoice existing = GetInvoiceById(invoice.InvoiceId);
             if (existing != null && existing.CustomerId != invoice.CustomerId)
             {
@@ -216,7 +207,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
             c.Dto.DateModified = DateTime.UtcNow;
             c.Dto.DateCreated = existing.DateCreated.ToUniversalTime();
 
-            // Update the redirect in the database
             using (var scope = _scopeProvider.CreateScope())
             {
                 try
