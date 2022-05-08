@@ -27,5 +27,7 @@
     "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/InvoiceCalculation.Controller.js"
   ],
   "css": [
+    "/App_Plugins/Unicorn.Umbraco.InvoiceManager/Styles/Styles.css",
+    "/App_Plugins/Unicorn.Umbraco.InvoiceManager/Styles/theme.css"
   ]
 }

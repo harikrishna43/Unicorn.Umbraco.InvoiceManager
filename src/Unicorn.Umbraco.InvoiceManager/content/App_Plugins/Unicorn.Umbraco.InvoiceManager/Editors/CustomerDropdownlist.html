@@ -1,11 +1,11 @@
-﻿<div class="" ng-controller="InvoiceManager.Editors.CustomerDropdown.Controller as vm">
+﻿<div class="unicornInvoiceManager" ng-controller="InvoiceManager.Editors.CustomerDropdown.Controller as vm">
     <ng-form name="dropDownListForm">
         <div ng-class="{loading: vm.loading}" class="col">
             <select 
                     ng-options="item as item.name for item in vm.customers track by item.id" 
                     ng-model="model.value" 
                     ng-disabled="vm.loading" 
-                    class="umb-property-editor umb-dropdown"
+                    class="form-control"
                     ng-required="true">
                 <option value="">Select Customer</option>
             </select>

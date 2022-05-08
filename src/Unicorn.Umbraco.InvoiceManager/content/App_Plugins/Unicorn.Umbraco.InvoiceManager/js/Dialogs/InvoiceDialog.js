@@ -9,13 +9,7 @@
     const vm = this;
 
     vm.options = $scope.model.options || {};
-    vm.invocedata =  {};
-    vm.invocedata.gst = 15
-    vm.invocedata.quantity= 0
-    vm.invocedata.taxableamount= 0
-    vm.invocedata.totalamount=0
-    vm.invocedata.totaltax= 0
-    vm.invocedata.unitprice=0
+    
     $scope.model.submitButtonLabelKey = "customer_add";
 
     $scope.model.title = "Create new Invoice";
@@ -44,8 +38,6 @@
         alias: "customer",
         label: "Customer",
         labelKey: "invoice_propertyCustomerId",
-        description: "Select Customer",
-        descriptionKey: "invoice_propertycustomerIdDescription",
         view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/CustomerDropdownlist.html?v=${cacheBuster}`,
         value: $scope.model.invoice && $scope.model.invoice.customer ? $scope.model.invoice.customer : null,
         validation: {
@@ -57,8 +49,6 @@
         alias: "status",
         label: "Invoice status",
         labelKey: "invoice_propertyInvoiceStatus",
-        description: "Specify invoice status",
-        descriptionKey: "invoice_propertyInvoiceStatusDescription",
         view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/RadioGroup.html?v=${cacheBuster}`,
         value: $scope.model.invoce && $scope.model.invoice.status ? $scope.model.invoice.status: 0,
         config: {
@@ -81,8 +71,6 @@
         alias: "invoicedate",
         label: "Invoice Date",
         labelKey: "invoice_propertyInvoiceDate",
-        description: "Specify invoice date",
-        descriptionKey: "invoice_propertyInvoiceDateDescription",
         view: `datepicker`,
         value: $scope.model.invoice && $scope.model.invoice.invoicedate ? $scope.model.invoice.invoicedate : "",
         config: {
@@ -99,8 +87,7 @@
         alias: "duedate",
         label: "Due Date",
         labelKey: "invoice_propertyDueDate",
-        description: "Specify invoice due date",
-        descriptionKey: "invoice_propertyDueDateDescription",
+        
         view: `datepicker`,
         value: $scope.model.invoice && $scope.model.invoice.duedate ? $scope.model.invoice.duedate : "",
         config: {
@@ -112,39 +99,13 @@
             //pattern: ""
         }
     });
-    $scope.model.advancedProperties.push({
-        alias: "note",
-        label: "Note",
-        labelKey: "unvoice_propertyNote",
-        description: "Add some invoice notes",
-        descriptionKey: "invoice_propertyNotesDescription",
-        view: `textbox`,
-        value: $scope.model.invoice && $scope.model.invoice.note ? $scope.model.invoice.note : "",
-        validation: {
-            mandatory: true,
-        }
-    });
-    $scope.model.advancedProperties.push({
-        alias: "description",
-        label: "Description",
-        labelKey: "invoice_propertyDescription",
-        description: "Add some description about the invoice",
-        descriptionKey: "invoice_propertyInvoiceDescDescription",
-        view: `textbox`,
-        value: $scope.model.invoice && $scope.model.invoice.description ? $scope.model.invoice.description : "",
-        validation: {
-            mandatory: true,
-        }
-    });
     
     $scope.model.advancedProperties.push({
         alias: "invoicedata",
         label: "Invoice Details (Included GST)",
         labelKey: "invoice_propertyTotalAmount",
-        description: "Calculation Amount",
-        descriptionKey: "invoice_propertyTotalAmountDescription",
         view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/InvoiceCalculation.html?v=${cacheBuster}`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata : vm.invocedata,
+        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata : null,
         validation: {
             mandatory: true,
         }
@@ -279,7 +240,10 @@
 
         // Attempt to submit the form (Angular validation will kick in)
         if (!formHelper.submitForm({ scope: $scope })) return;
-
+        if (invoice.invoicedata.length===0) {
+            notificationsService.error("Please add Invoice Items.");
+            return;
+        }
         // Reset the Angular form
         formHelper.resetForm({ scope: $scope });
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Invoice Manager</title>
     <style>
@@ -31,9 +31,11 @@
             padding: 10px;
             margin-bottom: 30px;
         }
+
         main {
             padding: 10px;
         }
+
         #logo {
             text-align: center;
             margin-bottom: 10px;
@@ -143,64 +145,64 @@
             text-align: center;
         }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <header class="clearfix">
-      <h1>INVOICE {{invoicenumber}}</h1>
-      <div id="company" class="clearfix">
-        <div>Invoice Manager</div>
-        <div>Ahmedabad,<br /> Gujarat 382445, INDIA</div>
-        <div>(+91) 00000-00000</div>
-        <div><a href="mailto:parmar.harikrishna43@gmail.com">parmar.harikrishna43@gmail.com</a></div>
-      </div>
-      <div id="project">
-        <div><span>NAME</span> {{name}}</div>
-        <div><span>ADDRESS</span> {{address}}</div>
-        <div><span>PHONE</span> <a href="tel:{{phone}}">{{phone}}</a></div>
-        <div><span>DATE</span> {{invoicedate}}</div>
-        <div><span>DUE DATE</span> {{duedate}}</div>
-      </div>
+        <h1>INVOICE {{invoicenumber}}</h1>
+        <div id="company" class="clearfix">
+            <div>Invoice Manager</div>
+            <div>Ahmedabad,<br /> Gujarat 382445, INDIA</div>
+            <div>(+91) 00000-00000</div>
+            <div><a href="mailto:parmar.harikrishna43@gmail.com">parmar.harikrishna43@gmail.com</a></div>
+        </div>
+        <div id="project">
+            <div><span>NAME</span> {{name}}</div>
+            <div><span>ADDRESS</span> {{address}}</div>
+            <div><span>PHONE</span> <a href="tel:{{phone}}">{{phone}}</a></div>
+            <div><span>DATE</span> {{invoicedate}}</div>
+            <div><span>DUE DATE</span> {{duedate}}</div>
+        </div>
     </header>
     <main>
-      <table>
-        <thead>
-          <tr>
-            <th class="service">Note</th>
-            <th class="desc">DESCRIPTION</th>
-            <th>PRICE</th>
-            <th>QTY</th>
-            <th>TOTAL</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="service">{{note}}</td>
-            <td class="desc">{{description}}</td>
-            <td class="unit">${{unitprice}}</td>
-            <td class="qty">{{qty}}</td>
-            <td class="total">${{total}}</td>
-          </tr>
-          <tr>
-            <td colspan="4">SUBTOTAL</td>
-            <td class="total">${{total}}</td>
-          </tr>
-          <tr>
-            <td colspan="4">TAX 15%</td>
-            <td class="total">${{totaltax}}</td>
-          </tr>
-          <tr>
-            <td colspan="4" class="grand total">GRAND TOTAL</td>
-            <td class="grand total">${{totalamount}}</td>
-          </tr>
-        </tbody>
-      </table>
-      <div id="notices">
-        <div>NOTICE:</div>
-        <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
-      </div>
+        <table>
+            <thead>
+                <tr>
+                    <th class="service">Note</th>
+                    <th class="desc">DESCRIPTION</th>
+                    <th>PRICE</th>
+                    <th>QTY</th>
+                    <th>TOTAL</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="service">{{note}}</td>
+                    <td class="desc">{{description}}</td>
+                    <td class="unit">${{unitprice}}</td>
+                    <td class="qty">{{qty}}</td>
+                    <td class="total">${{total}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4">SUBTOTAL</td>
+                    <td class="total">${{total}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4">TAX 15%</td>
+                    <td class="total">${{totaltax}}</td>
+                </tr>
+                <tr>
+                    <td colspan="4" class="grand total">GRAND TOTAL</td>
+                    <td class="grand total">${{totalamount}}</td>
+                </tr>
+            </tbody>
+        </table>
+        <div id="notices">
+            <div>NOTICE:</div>
+            <div class="notice">A finance charge of 1.5% will be made on unpaid balances after 30 days.</div>
+        </div>
     </main>
     <footer>
-      Invoice was created on a computer and is valid without the signature and seal.
+        Invoice was created on a computer and is valid without the signature and seal.
     </footer>
-  </body>
+</body>
 </html>

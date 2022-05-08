@@ -8,7 +8,6 @@
 
         vm.page = {
             title: 'Invoice Manager',
-            description: 'v1.0.0-beta',
             navigation: [
                 {
                     'name': 'Info',

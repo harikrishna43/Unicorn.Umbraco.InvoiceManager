@@ -1,0 +1,332 @@
+﻿.unicornInvoiceManager {
+
+    @green: #46a546;
+    @red: red;
+
+    .input {
+        display: flex;
+    }
+
+    .input > .hest {
+        margin-bottom: 10px;
+        display: block;
+        width: 200px;
+    }
+
+    .input > .hest small {
+        display: block;
+    }
+
+    pre {
+        margin-top: 10px;
+        font-size: 10px;
+        line-height: 12px;
+    }
+
+    .umb-editor-sub-header {
+        margin-bottom: 0;
+    }
+
+    .umb-table-cell {
+        cursor: default;
+        margin: auto 7px;
+    }
+
+    .umb-table-cell.col-id {
+        max-width: 50px;
+        padding: 6px 16px;
+    }
+
+    .umb-table-cell.col-arrow {
+        max-width: 25px;
+    }
+
+    .umb-table-cell.col-date {
+        max-width: 115px;
+        min-width: 115px;
+    }
+
+    .umb-table-cell.col-destination {
+        flex-grow: 4;
+    }
+
+    .umb-table-cell.col-actions {
+        a {
+            padding: 0 10px;
+            font-size: 12px;
+        }
+    }
+
+    .umb-table-row {
+        cursor: default;
+    }
+
+    .umb-era-button {
+        &.-green {
+            background: #53a93f;
+            color: white;
+
+            &:hover {
+                background-color: darken(@green, 5%);
+            }
+        }
+
+        & + .umb-era-button {
+            margin-left: 10px;
+        }
+    }
+
+    .umb-era-button-group {
+        display: flex;
+    }
+
+    .umb-load-indicator {
+        z-index: 9001;
+        display: none;
+    }
+
+    .loading {
+
+        & > .umb-load-indicator {
+            display: block;
+        }
+
+        .umb-table, .table {
+            opacity: 0.50;
+        }
+    }
+
+    div.list {
+        position: relative;
+    }
+
+    .display-url {
+        display: block;
+        margin-top: -3px;
+        font-size: 11px;
+        line-height: 17px;
+    }
+
+    .btn-loader {
+        position: relative;
+
+        &.loading {
+            padding-right: 35px;
+
+            .umb-button__progress {
+                display: initial;
+                right: 10px;
+                left: initial;
+            }
+        }
+
+        .umb-button__progress {
+            display: none;
+        }
+    }
+
+    @import '_table';
+    @import '_pagination';
+
+    > .header {
+        display: flex;
+        margin-bottom: 10px;
+
+        label.control-label {
+            width: auto;
+            float: none;
+        }
+
+        div.filters {
+            margin-left: auto;
+
+            .btn {
+                padding: 6px 10px;
+                font-size: 12px;
+                line-height: 16px;
+            }
+        }
+    }
+}
+
+@import '_dialogs';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    New styling lives here while still "work in progress"
+*/
+.SkybrudUmbracoRedirects {
+
+    .umb-overlay-container {
+        position: relative;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-negative: 1;
+        flex-shrink: 1;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sky-button-group {
+        display: flex;
+    }
+
+    .sky-button-group label {
+        display: flex;
+        margin: 0;
+    }
+
+    .sky-button-group label + label {
+        margin-left: 20px;
+    }
+
+    .sky-button-group input {
+        margin-right: 7px;
+    }
+
+    .sky-option + .sky-option {
+        margin-top: 25px;
+    }
+
+    .redirects-basic-options {
+        height: auto;
+        -ms-flex-positive: 1;
+        flex-grow: 1;
+        -ms-flex-negative: 1;
+        flex-shrink: 1;
+        -ms-flex-preferred-size: auto;
+        flex-basis: auto;
+    }
+
+    .redirects-advanced-options {
+        margin-top: 50px;
+        h4 {
+            margin: 10px 0 15px 0;
+            border-bottom: 1px solid #e9e9eb;
+            padding-bottom: 10px;
+            font-weight: bold;
+        }
+    }
+}
+
+
+
+
+.gte-umb77 {
+
+    @danger: #F02E28;
+
+    .alert.alert-danger {
+        padding: 5px 8px;
+        font-size: 12px;
+        margin-bottom: 10px;
+        cursor: default;
+        code {
+            padding: 1px 4px;
+            color: #fff;
+            border-color: darken(@danger, 15%);
+            background-color: darken(@danger, 10%);
+        }
+    }
+
+}
+
+.SkybrudUmbracoRedirects {
+
+    .filters {
+        margin-bottom: 20px;
+        display: flex;
+
+        input[type=text], select {
+            margin-bottom: 0;
+        }
+
+        .btn + .btn {
+            margin-left: 10px;
+        }
+    }
+
+    &.RadioGroup {
+        display: flex;
+
+        label {
+            display: flex;
+            cursor: pointer;
+        }
+
+        label + label {
+            margin-left: 20px;
+        }
+
+        input {
+            display: initial;
+            margin-right: 5px;
+        }
+
+        i {
+            display: none;
+            margin-right: 5px;
+            width: 18px;
+            height: 18px;
+            font-size: 10px;
+            line-height: 18px;
+        }
+    }
+
+    &.RedirectsRootId {
+
+        div {
+            position: relative;
+            height: 32px;
+        }
+
+        select {
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 32px;
+            height: 32px;
+        }
+
+    }
+
+    &.RedirectsOriginalUrl {
+        input {
+            width: 100%;
+            box-sizing: border-box;
+            line-height: 32px;
+            height: 32px;
+        }
+    }
+
+    .umb-el-wrap .controls {
+        margin-top: 5px;
+    }
+
+    .alert.alert-danger code {
+        padding: 1px 4px;
+        color: #fff;
+        border-color: lighten(#872119, 15%);
+        background-color: lighten(#872119, 15%);
+    }
+}

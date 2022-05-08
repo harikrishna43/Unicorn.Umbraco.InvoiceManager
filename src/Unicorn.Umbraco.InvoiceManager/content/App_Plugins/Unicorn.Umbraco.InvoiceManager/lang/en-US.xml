@@ -65,5 +65,7 @@
 		<key alias="editInvoice">Edit Invoice</key>
 		<key alias="save">Save</key>
 		<key alias="detailInvoice">Invoice's Details</key>
+    <key alias="detailInvoice">Invoice's Details</key>
+    <key alias="pagination">Showing %0%-%1% of %2% - Page %3% of %4%</key>
 	</area>
 </language>

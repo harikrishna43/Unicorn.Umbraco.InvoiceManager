@@ -1,75 +1,86 @@
-﻿<div class="" ng-controller="InvoiceManager.Editors.InvoiceCalculation.Controller">
-    <ng-form name="textboxInvoiceFieldForm">
-        <umb-box>
-            <umb-box-content>
-                <div class="form-control umb-el-wrap">
-                    <label class="control-label" for="quantity">Quantity</label>
-                    <input type="number"
-                           class="umb-property-editor umb-textstring textstring"
-                           name="quantity"
-                           ng-change="change()"
-                           ng-model="model.value.quantity"
-                           ng-value="model.value.quantity"
-                           val-server="value"
-                           ng-required="true"
-                           min="1"/>
-                    <div ng-messages="textboxInvoiceFieldForm.quantity.$error" show-validation-on-submit>
-                        <p class="help-inline" ng-message="required">Quality must be greater than 0.</p>
-                        <p class="help-inline" ng-message="min">Quality must be greater than 0.</p>
+﻿<div class="unicornInvoiceManager" ng-controller="InvoiceManager.Editors.InvoiceCalculation.Controller">
+    <div class="sidebar-enabled sidebar-end needs-validation">
+        <div class="container">
+            <div class="row">
+                <!-- Content-->
+                <div class="col-lg-4 sidebar bg-secondary pt-5 pb-md-2">
+                    <div class="mb-3">
+                        <label class="control-label  form-label" for="ch-order-notes">Notes</label>
+                        <textarea class="form-control" id="ch-order-notes" rows="3" placeholder="Notes about your invoice items." name="newInvoiceItem.note"
+                                  ng-change="change()"
+                                  ng-model="newInvoiceItem.note"
+                                  val-server="value"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="control-label  control-label  form-label" for="ch-order-notes">Description</label>
+                        <textarea class="form-control" id="ch-order-notes" rows="3" placeholder="Invoice item description." name="newInvoiceItem.description"
+                                  ng-change="change()"
+                                  ng-model="newInvoiceItem.description"
+                                  val-server="value"></textarea>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="control-label  form-label" for="ch-fn">Quanity<sup class="text-danger ms-1" placeholder="Quanity" >*</sup></label>
+                        <input class="form-control" type="number" id="ch-fn" name="newInvoiceItem.quantity"
+                               ng-change="change()"
+                               ng-model="newInvoiceItem.quantity"
+                               val-server="value"
+                               min="1">
+                    </div>
+                    <div class="mb-3">
+                        <label class="control-label  form-label" for="ch-ln">Unit Price<sup class="text-danger ms-1" placeholder="Unit price">*</sup></label>
+                        <input class="form-control" type="number" id="ch-ln" name="newInvoiceItem.unitprice"
+                               ng-change="change()"
+                               ng-model="newInvoiceItem.unitprice"
+                               val-server="value"
+                               min="1">
+                    </div>
+
+                    <div class="umb-cropsizes__controls">
+                        <button type="button" class="btn btn-info add" ng-hide="editMode" ng-click="add($event)"><localize key="general_add">Add</localize></button>
+                        <button type="button" class="btn btn-info add" ng-show="editMode" ng-click="add($event)"><localize key="general_update">Update</localize></button>
+                        <button type="button" class="btn btn-link" ng-show="editMode" ng-click="cancel($event)"><localize key="general_cancel">Cancel</localize></button>
                     </div>
                 </div>
-                <div class="form-control umb-el-wrap control-header">
-                    <label class="control-label" for="unitprice">Unit Price</label>
-                    <input type="number"
-                           class="umb-property-editor umb-textstring textstring"
-                           name="unitprice"
-                           ng-change="change()"
-                           ng-model="model.value.unitprice"
-                           ng-value="model.value.unitprice"
-                           val-server="value"
-                           ng-required="true"
-                           min="1"/>
-                    <div ng-messages="textboxInvoiceFieldForm.unitprice.$error" show-validation-on-submit>
-                        <p class="sr-only" ng-message="valServer" tabindex="0">Unit price must be greater than 0.</p>
-                        <p class="help-inline" ng-message="required">Please add unit price.</p>
-                        <p class="help-inline" ng-message="min">Unit price must be greater than 0.</p>
+                <!-- Sidebar-->
+                <div class="col-lg-8 content py-4">
+                    <div class="ps-lg-4 mb-3 pb-5">
+                        <h2 class="h4 pb-3">Invoice Items</h2>
+                        <div ui-sortable="sortableOptions" class="umb-cropsizes__sortable" ng-model="model.value">
+                            <div class="d-flex align-items-center mb-4" ng-repeat="item in model.value">
+                                <umb-icon icon="icon-navigation" class="icon handle"></umb-icon>
+                                <div class="w-100 ps-2 ms-1">
+                                    <div class="d-flex align-items-center justify-content-between">
+                                        <div class="me-3">
+                                                <h4 class="nav-heading fs-md mb-1">{{item.note}}</h4>
+                                                <span>{{item.description}}</span>
+                                            <div class="d-flex align-items-center fs-sm">
+                                                <span class="me-2">{{item.quantity}}</span>
+                                                <span class="me-2">x</span>
+                                                <span class="me-2">${{item.unitprice}}</span>
+                                                <span class="me-2">=</span>
+                                                <span class="me-2">${{item.TaxableAmount.toFixed(2)}}</span>
+                                            </div>
+                                        </div>
+                                        <div class="ps-3 border-start">
+
+                                            <div class="umb-prevalues-multivalues__right">
+                                                <button type="button" class="umb-node-preview__action" ng-click="edit(item, $event)"><localize key="general_edit">Edit</localize></button>
+                                                <button type="button" class="umb-node-preview__action umb-node-preview__action--red" ng-click="remove(item, $event)"><localize key="general_remove">Remove</localize></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="mt-0 mb-4">
+                        <div class="d-flex justify-content-between mb-3"><span class="h6 mb-0">Subtotal:</span><span class="text-nav">${{TaxableAmount.toFixed(2)}}</span></div>
+                        <div class="d-flex justify-content-between mb-3"><span class="h6 mb-0">GST(15%):</span><span class="text-nav">${{TotalTaxAmount.toFixed(2)}}</span></div>
+                        <div class="d-flex justify-content-between mb-3"><span class="h6 mb-0">Total:</span><span class="h6 mb-0">${{TotalAmount.toFixed(2)}}</span></div>
                     </div>
                 </div>
-
-                <div class="form-control umb-el-wrap control-header">
-                    <label class="control-label" for="taxableamount">Taxable Amount</label>
-                    <input type="number" 
-                           class="umb-property-editor umb-textstring textstring" 
-                           name="taxableamount" 
-                           ng-model="model.value.taxableamount" 
-                           ng-value="model.value.taxableamount" readonly />
-                </div>
-                <div class="form-control umb-el-wrap control-header">
-                    <label class="control-label" for="gst">GST (%)</label>
-                    <input type="number" 
-                           class="umb-property-editor umb-textstring textstring" 
-                           name="gst" 
-                           ng-model="model.value.gst" 
-                           ng-value="model.value.gst" readonly />
-                </div>
-                <div class="form-control umb-el-wrap control-header">
-                    <label class="control-label" for="totaltax">Total Tax</label>
-                    <input type="number" 
-                           class="umb-property-editor umb-textstring textstring" 
-                           name="totaltax" 
-                           ng-model="model.value.totaltax" 
-                           ng-value="model.value.totaltax" readonly />
-                </div>
-                <div class="form-control umb-el-wrap control-header">
-                    <label class="control-label" for="totalamount">Total Amount</label>
-                    <input type="number" 
-                           class="umb-property-editor umb-textstring textstring" 
-                           name="totalamount" 
-                           ng-model="model.value.totalamount" 
-                           ng-value="model.value.totalamount" readonly />
-                </div>
-
-            </umb-box-content>
-        </umb-box>
-    </ng-form>
+            </div>
+        </div>
+    </div>
 </div>

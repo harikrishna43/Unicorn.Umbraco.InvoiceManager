@@ -15,6 +15,14 @@
             description: 'Create invoice of the customers'
         }
         vm.items = [];
+        vm.usersOptions = {};
+        vm.userSortData = [
+            { label: "Name (A-Z)", key: "Name", direction: "Ascending" },
+            { label: "Name (Z-A)", key: "Name", direction: "Descending" },
+            { label: "Newest", key: "CreateDate", direction: "Descending" },
+            { label: "Oldest", key: "CreateDate", direction: "Ascending" },
+            { label: "Last login", key: "LastLoginDate", direction: "Descending" }
+        ];
         vm.createInvoice = function () {
             invoiceService.createInvoice({
 

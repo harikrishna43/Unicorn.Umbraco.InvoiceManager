@@ -1,53 +1,47 @@
-﻿<div class="" ng-controller="InvoiceManager.InvoiceDialog.Controller as vm">
-    <form name="propertiesForm" ng-submit="vm.save()" novalidate val-form-manager>
-        <umb-editor-view>
-            <umb-editor-header
-                name="model.title"
-                name-locked="true"
-                navigation="model.navigation"
-                hide-alias="true"
-                hide-icon="true"
-                hide-description="true">
-            </umb-editor-header>
-            <umb-editor-container>
-                <umb-box>
-                    <umb-box-content ng-show="vm.settingsApp.active">
-                        <div class="">
-                            <umb-header>
-                                <localize key="">Customer </localize>
-                            </umb-header>
-                            <hr />
-                            <umb-property property="property" ng-repeat="property in model.properties">
-                                <umb-property-editor model="property"></umb-property-editor>
-                            </umb-property>
+﻿<div class="unicornInvoiceManager" ng-controller="InvoiceManager.InvoiceDialog.Controller as vm">
+    
+        <form name="propertiesForm" ng-submit="vm.save()" novalidate val-form-manager>
+            <umb-editor-view>
+                <umb-editor-header name="model.title"
+                                   name-locked="true"
+                                   navigation="model.navigation"
+                                   hide-alias="true"
+                                   hide-icon="true"
+                                   hide-description="true">
+                </umb-editor-header>
+                <umb-editor-container>
+                    <div class="container">
+                        <div class="row">
+                            <div ng-show="vm.settingsApp.active">
+                                <div class="">
+                                    <umb-property property="property" ng-repeat="property in model.properties">
+                                        <umb-property-editor model="property"></umb-property-editor>
+                                    </umb-property>
+                                </div>
+                                <div class="">
+                                    <umb-property property="property" ng-repeat="property in model.advancedProperties">
+                                        <umb-property-editor model="property"></umb-property-editor>
+                                    </umb-property>
+                                </div>
+                            </div>
+                            <div ng-show="vm.infoApp.active">
+                                <umb-property property="property" ng-repeat="property in model.infoProperties">
+                                    <umb-property-editor model="property"></umb-property-editor>
+                                </umb-property>
+                            </div>
                         </div>
-                        <div class="">
-                            <h4>
-                                <localize key="">Invoice </localize>
-                            </h4>
-                            <hr />
-                            <umb-property property="property" ng-repeat="property in model.advancedProperties">
-                                <umb-property-editor model="property"></umb-property-editor>
-                            </umb-property>
-                        </div>
-                    </umb-box-content>
-                    <umb-box-content ng-show="vm.infoApp.active">
-                        <umb-property property="property" ng-repeat="property in model.infoProperties">
-                            <umb-property-editor model="property"></umb-property-editor>
-                        </umb-property>
-                    </umb-box-content>
-                </umb-box>
-            </umb-editor-container>
-            <umb-editor-footer>
-                <umb-editor-footer-content-right>
-                    <umb-button ng-if="model.infiniteMode" action="vm.close()" button-style="link" label-key="close" type="button" shortcut="esc"></umb-button>
-                    <umb-button
-                        type="submit"
-                        button-style="success"
-                        label-key="{{model.submitButtonLabelKey}}">
-                    </umb-button>
-                </umb-editor-footer-content-right>
-            </umb-editor-footer>
-        </umb-editor-view>
-    </form>
+                    </div>
+                </umb-editor-container>
+                <umb-editor-footer>
+                    <umb-editor-footer-content-right>
+                        <umb-button ng-if="model.infiniteMode" action="vm.close()" button-style="link" label-key="close" type="button" shortcut="esc"></umb-button>
+                        <umb-button type="submit"
+                                    button-style="success"
+                                    label-key="{{model.submitButtonLabelKey}}">
+                        </umb-button>
+                    </umb-editor-footer-content-right>
+                </umb-editor-footer>
+            </umb-editor-view>
+        </form>
+    
 </div>
