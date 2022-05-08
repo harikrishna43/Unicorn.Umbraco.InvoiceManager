@@ -34,19 +34,19 @@ namespace Unicorn.Umbraco.InvoiceManager.Queries.Invoice.QueryHandler
             string dir = _hostingEnvironment.MapPathContentRoot("~/App_Plugins/Unicorn.Umbraco.InvoiceManager/InvoiceTemplate");
             var file = dir + "/invoice.html";
             string htmlTemplate = System.IO.File.ReadAllText(file);
-            htmlTemplate=htmlTemplate.Replace("{{invoicenumber}}", data.InvoiceNumber);
+            htmlTemplate = htmlTemplate.Replace("{{invoicenumber}}", data.InvoiceNumber);
             htmlTemplate = htmlTemplate.Replace("{{name}}", data.Customer.Name);
             htmlTemplate = htmlTemplate.Replace("{{address}}", data.Customer.Address);
             htmlTemplate = htmlTemplate.Replace("{{phone}}", data.Customer.Phone);
             htmlTemplate = htmlTemplate.Replace("{{invoicedate}}", data.InvoiceDate.ToString("MMMM dd, yyyy"));
             htmlTemplate = htmlTemplate.Replace("{{duedate}}", data.DueDate.ToString("MMMM dd, yyyy"));
-            htmlTemplate = htmlTemplate.Replace("{{note}}", data.InvoiceNote);
-            htmlTemplate = htmlTemplate.Replace("{{description}}", data.Description);
-            htmlTemplate = htmlTemplate.Replace("{{unitprice}}", data.InvoiceData.UnitPrice.ToString("0.00"));
-            htmlTemplate = htmlTemplate.Replace("{{qty}}", data.InvoiceData.Quantity.ToString());
-            htmlTemplate = htmlTemplate.Replace("{{total}}", data.InvoiceData.TaxableAmount.ToString("0.00"));
-            htmlTemplate = htmlTemplate.Replace("{{totaltax}}", data.InvoiceData.TotalTax.ToString("0.00"));
-            htmlTemplate = htmlTemplate.Replace("{{totalamount}}", data.InvoiceData.TotalAmount.ToString("0.00"));
+            //htmlTemplate = htmlTemplate.Replace("{{note}}", data.InvoiceNote);
+            //htmlTemplate = htmlTemplate.Replace("{{description}}", data.Description);
+            //htmlTemplate = htmlTemplate.Replace("{{unitprice}}", data.InvoiceData.UnitPrice.ToString("0.00"));
+            //htmlTemplate = htmlTemplate.Replace("{{qty}}", data.InvoiceData.Quantity.ToString());
+            //htmlTemplate = htmlTemplate.Replace("{{total}}", data.InvoiceData.TaxableAmount.ToString("0.00"));
+            //htmlTemplate = htmlTemplate.Replace("{{totaltax}}", data.InvoiceData.TotalTax.ToString("0.00"));
+            //htmlTemplate = htmlTemplate.Replace("{{totalamount}}", data.InvoiceData.TotalAmount.ToString("0.00"));
             return htmlTemplate;
         }
     }

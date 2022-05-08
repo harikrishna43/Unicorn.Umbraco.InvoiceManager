@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Unicorn.Umbraco.InvoiceManager.Models.Schema;
 using Unicorn.Umbraco.InvoiceManager.Models.Dtos;
+using Unicorn.Umbraco.InvoiceManager.Data.Models.Schema;
 
 namespace Unicorn.Umbraco.InvoiceManager.Migrations
 {
@@ -31,6 +32,15 @@ namespace Unicorn.Umbraco.InvoiceManager.Migrations
             else
             {
                 Logger.LogDebug("The database table {DbTable} already exists, skipping", InvoiceSchema.TableName);
+            }
+
+            if (TableExists(InvoiceItemsSchema.TableName) == false)
+            {
+                Create.Table<InvoiceItemsSchema>().Do();
+            }
+            else
+            {
+                Logger.LogDebug("The database table {DbTable} already exists, skipping", InvoiceItemsSchema.TableName);
             }
         }
     }

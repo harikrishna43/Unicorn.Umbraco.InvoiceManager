@@ -30,18 +30,10 @@
         localizationService.localize("invoice_detailInvoice").then(function (value) { $scope.model.title = value; });
 
         $scope.model.submitButtonLabelKey = "invoice_save";
-
-        //destionation = $scope.model.redirect.destination;
-
         $scope.model.hiddenProperties.push({
             alias: "invoiceid",
             value: $scope.model.invoice.invoiceid
         });
-
-        //$scope.model.hiddenProperties.push({
-        //    alias: "key",
-        //    value: $scope.model.redirect.key
-        //});
 
     }
 

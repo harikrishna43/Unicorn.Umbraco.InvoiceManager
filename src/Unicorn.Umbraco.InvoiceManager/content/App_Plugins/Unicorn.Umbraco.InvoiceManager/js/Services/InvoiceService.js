@@ -266,7 +266,7 @@
                     // Update the button state in the UI
                     overlay.submitButtonState = "busy";
     
-                    // Delete the redirect
+                    // Delete the invoice
                     service.deleteInvoice(options.invoice, function () {
                         if (typeof options.submit === "function") {
                             options.submit(overlay);

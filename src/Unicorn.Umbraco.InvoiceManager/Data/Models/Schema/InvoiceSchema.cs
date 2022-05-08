@@ -12,7 +12,7 @@ using Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations;
 namespace Unicorn.Umbraco.InvoiceManager.Models.Schema
 {
     [TableName(TableName)]
-    [PrimaryKey(nameof(InvoiceId), AutoIncrement = true)]
+    [PrimaryKey(nameof(Id), AutoIncrement = true)]
     [ExplicitColumns]
     public class InvoiceSchema
     {
@@ -21,7 +21,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Schema
         /// <summary>
         /// Gets the name of the table used in the database.
         /// </summary>
-        public const string TableName = "Invoices";
+        public const string TableName = "UnicornInvoiceManagerInvoices";
 
         #endregion
 
@@ -29,9 +29,9 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Schema
         /// <summary>
         /// 
         /// </summary>
-        [Column(nameof(InvoiceId))]
+        [Column(nameof(Id))]
         [PrimaryKeyColumn(AutoIncrement = true)]
-        public int InvoiceId { get; set; }
+        public int Id { get; set; }
 
         [Column(nameof(CustomerId))]
         [ForeignKey(typeof(CustomerSchema), Name = "FK_Invoice_CustomerId")]
@@ -48,21 +48,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Schema
 
         [Column(nameof(DueDate))]
         public DateTime DueDate { get; set; }
-
-        [Column(nameof(InvoiceNote))]
-        public string InvoiceNote { get; set; }
-
-        [Column(nameof(Description))]
-        public string Description { get; set; }
-
-        [Column(nameof(Quantity))]
-        public int Quantity { get; set; }
-
-        [Column(nameof(UnitPrice))]
-        public decimal UnitPrice { get; set; }
-
-        [Column(nameof(GST))]
-        public decimal GST { get; set; }
 
         [Column(nameof(DateCreated))]
         public DateTime DateCreated { get; set; }

@@ -34,7 +34,6 @@
         vm.activeFilters = 0;
 
         vm.loading = false;
-        // Opens a dialog for adding a new redirect. When a callback received, the list is updated.
         vm.editInvoice = function (invoice) {
             invoiceService.editInvoice(invoice, {
                 rootNodes: vm.rootNodes,
@@ -174,7 +173,7 @@
                     vm.pagination.pages
                 ];
 
-                localizationService.localize("redirects_pagination", tokens).then(function (value) {
+                localizationService.localize("invoice_pagination", tokens).then(function (value) {
                     vm.pagination.text = value;
                 });
 

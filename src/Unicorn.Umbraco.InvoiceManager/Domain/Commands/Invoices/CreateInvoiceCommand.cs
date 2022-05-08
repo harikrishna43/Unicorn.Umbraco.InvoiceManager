@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unicorn.Umbraco.InvoiceManager.Models;
 
 namespace Unicorn.Umbraco.InvoiceManager.Commands.Invoices
 {
@@ -25,19 +26,8 @@ namespace Unicorn.Umbraco.InvoiceManager.Commands.Invoices
         [JsonProperty("duedate")]
         public DateTime DueDate { get; set; }
 
-        [JsonProperty("note")]
-        public string InvoiceNote { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("quantity")]
-        public int Quantity { get; set; }
-
-        [JsonProperty("unitprice")]
-        public decimal UnitPrice { get; set; }
-
-        [JsonProperty("gst")]
-        public decimal GST { get; set; }
+        public List<InvoiceData> InvoiceData { get; set; }
     }
+
+   
 }

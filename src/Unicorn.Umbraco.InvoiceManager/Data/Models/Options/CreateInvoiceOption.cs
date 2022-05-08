@@ -25,25 +25,10 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Options
         [JsonProperty("duedate")]
         public DateTime DueDate { get; set; }
 
-        [JsonProperty("note")]
-        public string InvoiceNote { get; set; }
-
-        [JsonProperty("description")]
-        public string Description { get; set; }
-
-        [JsonProperty("quantity")]
-        public int Quantity { get; set; }
-
-        [JsonProperty("unitprice")]
-        public decimal UnitPrice { get; set; }
-
-        [JsonProperty("gst")]
-        public decimal GST { get; set; }
-
         [JsonProperty("customer")]
         public Customer Customer { get; set; }
 
         [JsonProperty("invoicedata")]
-        public InvoiceData InvoiceData { get; set; }
+        public List<InvoiceData> InvoiceData { get; set; }
     }
 }

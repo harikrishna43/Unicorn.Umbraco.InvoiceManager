@@ -105,7 +105,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Helpers
             string customerbaseUrl = "/umbraco/backoffice/InvoiceManager/Customer/";
             string invoicebaseUrl = "/umbraco/backoffice/InvoiceManager/Invoice/";
 
-            // Append the "redirects" dictionary to "skybrud"
             return new Dictionary<string, object> {
                 {"customerbaseUrl", customerbaseUrl },
                 {"invoicebaseUrl", invoicebaseUrl },

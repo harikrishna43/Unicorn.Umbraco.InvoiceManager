@@ -13,9 +13,9 @@ namespace Unicorn.Umbraco.InvoiceManager.Models
     {
         public InvoiceData()
         {
-            Dto = new InvoiceDto();
+            Dto = new InvoiceItemsDto();
         }
-        internal InvoiceDto Dto { get; }
+        internal InvoiceItemsDto Dto { get; }
         
         public int Quantity { get => Dto.Quantity; set => Dto.Quantity=value; }
         public decimal UnitPrice { get => Dto.UnitPrice; set => Dto.UnitPrice=value; }
@@ -23,14 +23,20 @@ namespace Unicorn.Umbraco.InvoiceManager.Models
         public decimal TaxableAmount { get => (Quantity * Dto.UnitPrice); }
         public decimal TotalTax { get => ((Dto.GST * Dto.Quantity * Dto.UnitPrice) / 100); }
         public decimal TotalAmount { get => (this.TotalTax+(Quantity*Dto.UnitPrice)); }
+        public int Id { get => Dto.Id; set => Dto.Id=value; }
+        public string InvoiceNote { get => Dto.InvoiceNote; set => Dto.InvoiceNote = value; }
+        public string Description { get => Dto.Description; set => Dto.Description = value; }
+        public DateTime DateCreated { get => Dto.DateCreated; set => Dto.DateCreated = value; }
+        public DateTime DateModified { get => Dto.DateModified; set => Dto.DateModified = value; }
+        public int InvoiceId { get => Dto.InvoiceId; set => Dto.InvoiceId=value; }
 
-        internal InvoiceData(InvoiceDto dto)
+        internal InvoiceData(InvoiceItemsDto dto)
         {
             Dto = dto;
         }
         #region Static methods
 
-        internal static InvoiceData CreateFromDto(InvoiceDto dto)
+        internal static InvoiceData CreateFromDto(InvoiceItemsDto dto)
         {
             return dto == null ? null : new InvoiceData(dto);
         }

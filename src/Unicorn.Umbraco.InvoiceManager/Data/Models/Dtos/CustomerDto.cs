@@ -18,7 +18,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Dtos
         /// <summary>
         /// Gets the name of the table used in the database.
         /// </summary>
-        public const string TableName = "Customers";
+        public const string TableName = "UnicornInvoiceManagerCustomers";
         #endregion
 
         #region Properties

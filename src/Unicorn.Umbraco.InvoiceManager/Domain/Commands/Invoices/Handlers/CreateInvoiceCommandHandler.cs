@@ -14,7 +14,7 @@ using Umbraco.Cms.Core.Mapping;
 namespace Unicorn.Umbraco.InvoiceManager.Commands.Invoices.Handlers
 {
     public class CreateInvoiceCommandHandler : ICommandHandler<CreateInvoiceCommand>
-{
+    {
         private readonly IInvoiceService _invoiceService;
         private readonly IUmbracoMapper _mapper;
         public CreateInvoiceCommandHandler(IInvoiceService invoiceService, IUmbracoMapper mapper)
@@ -23,7 +23,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Commands.Invoices.Handlers
             _mapper = mapper;
         }
         public void Handle(CreateInvoiceCommand command)
-{
+        {
             var option = _mapper.Map<InvoiceDto>(command);
             var data = _invoiceService.CreateInvoice(option);
         }

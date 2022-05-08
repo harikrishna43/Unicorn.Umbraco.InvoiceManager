@@ -9,11 +9,12 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using Umbraco.Cms.Infrastructure.Persistence.DatabaseAnnotations;
+using Umbraco.Cms.Infrastructure.Persistence.Dtos;
 
 namespace Unicorn.Umbraco.InvoiceManager.Models.Dtos
 {
     [TableName(TableName)]
-    [PrimaryKey(nameof(InvoiceId), AutoIncrement = true)]
+    [PrimaryKey(nameof(Id), AutoIncrement = true)]
     [ExplicitColumns]
     public class InvoiceDto
     {
@@ -22,17 +23,21 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Dtos
         /// <summary>
         /// Gets the name of the table used in the database.
         /// </summary>
-        public const string TableName = "Invoices";
+        public const string TableName = "UnicornInvoiceManagerInvoices";
 
         #endregion
-
+        public InvoiceDto()
+        {
+            InvoiceItems = new List<InvoiceItemsDto>();
+            Customer = new CustomerDto();
+        }
         #region Properties
         /// <summary>
         /// 
         /// </summary>
-        [Column(nameof(InvoiceId))]
+        [Column(nameof(Id))]
         [PrimaryKeyColumn(AutoIncrement = true)]
-        public int InvoiceId { get; set; }
+        public int Id { get; set; }
 
         [Column(nameof(CustomerId))]
         [ForeignKey(typeof(CustomerDto), Name = "FK_Invoice_CustomerId")]
@@ -48,35 +53,24 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Dtos
         [Column(nameof(DueDate))]
         public DateTime DueDate { get; set; }
 
-        [Column(nameof(InvoiceNote))]
-        public string InvoiceNote { get; set; }
-
-        [Column(nameof(Description))]
-        public string Description { get; set; }
-
-        [Column(nameof(Quantity))]
-        public int Quantity { get; set; }
-
-        [Column(nameof(UnitPrice))]
-        public decimal UnitPrice { get; set; }
-
-        [Column(nameof(GST))]
-        public decimal GST { get; set; }
-
         [Column(nameof(DateCreated))]
         public DateTime DateCreated { get; set; }
 
         [Column(nameof(DateModified))]
         public DateTime DateModified { get; set; }
 
-
         [Column(nameof(IsDeleted))]
         public bool IsDeleted { get; set; }
 
         [ResultColumn]
-        [References(typeof(CustomerDto))]
-        [Reference(ReferenceType.OneToOne, ReferenceMemberName = "CustomerId",ColumnName ="CustomerId")]
+        //[References(typeof(CustomerDto))]
+        [Reference(ReferenceType.OneToOne, ReferenceMemberName = "CustomerId")]
         public CustomerDto Customer { get; set; }
+
+        [ResultColumn]
+        [References(typeof(InvoiceItemsDto))]
+        [Reference(ReferenceType.Many)]
+        public List<InvoiceItemsDto> InvoiceItems { get; set; }
 
         /// <summary>
         /// This field is ignored by db.CreateTable().

@@ -246,7 +246,7 @@
                     // Update the button state in the UI
                     overlay.submitButtonState = "busy";
     
-                    // Delete the redirect
+                    // Delete the customer
                     service.deleteCustomer(options.customer, function () {
                         if (typeof options.submit === "function") {
                             options.submit(overlay);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Unicorn.Umbraco.InvoiceManager.Interfaces;
 
 namespace Unicorn.Umbraco.InvoiceManager.Interfaces
 {
@@ -24,20 +25,14 @@ namespace Unicorn.Umbraco.InvoiceManager.Interfaces
         [JsonProperty("duedate")]
         public DateTime DueDate { get; set; }
 
-        [JsonProperty("note")]
-        public string InvoiceNote { get; set; }
+        [JsonProperty("totalamount")]
+        public decimal TotalAmount { get; }
 
-        [JsonProperty("description")]
-        public string Description { get; set; }
+        [JsonProperty("taxableamount")]
+        public decimal TaxableAmount { get; }
 
-        [JsonProperty("quantity")]
-        public int Quantity { get; set; }
-
-        [JsonProperty("unitprice")]
-        public decimal UnitPrice { get; set; }
-
-        [JsonProperty("gst")]
-        public decimal GST { get; set; }
+        [JsonProperty("totaltax")]
+        public decimal TotalTax { get; }
 
         [JsonProperty("datecreated")]
         public DateTime DateCreated { get; set; }
@@ -48,12 +43,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Interfaces
         [JsonProperty("isdeleted")]
         public bool IsDeleted { get; set; }
 
-        [JsonProperty("totalamount")]
-        public decimal TotalAmount { get; }
-
-        [JsonProperty("totaltax")]
-        public decimal TotalTax { get; }
-
         [JsonProperty("invoicenumber")]
         public string InvoiceNumber { get; }
 
@@ -61,6 +50,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Interfaces
         public ICustomer Customer { get; }
 
         [JsonProperty("invoicedata")]
-        public IInvoiceData InvoiceData { get; }
+        public List<IInvoiceData> InvoiceData { get; set; }
     }
 }

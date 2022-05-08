@@ -9,6 +9,18 @@ namespace Unicorn.Umbraco.InvoiceManager.Interfaces
 {
     public interface IInvoiceData
     {
+        [JsonProperty("id")]
+        public int Id { get; set; }
+
+        [JsonProperty("note")]
+        public string InvoiceNote { get; set; }
+
+        [JsonProperty("invoiceid")]
+        public int InvoiceId { get; set; }
+
+        [JsonProperty("description")]
+        public string Description { get; set; }
+
         [JsonProperty("quantity")]
         public int Quantity { get; set; }
 
@@ -18,14 +30,15 @@ namespace Unicorn.Umbraco.InvoiceManager.Interfaces
         [JsonProperty("gst")]
         public decimal GST { get; set; }
 
-        [JsonProperty("totalamount")]
-        public decimal TotalAmount { get; }
+        [JsonProperty("datecreated")]
+        public DateTime DateCreated { get; set; }
 
-        [JsonProperty("taxableamount")]
-        public decimal TaxableAmount { get;}
+        [JsonProperty("datemodified")]
+        public DateTime DateModified { get; set; }
 
-        [JsonProperty("totaltax")]
+        public decimal TaxableAmount { get; }
         public decimal TotalTax { get; }
+        public decimal TotalAmount { get; }
 
     }
 }

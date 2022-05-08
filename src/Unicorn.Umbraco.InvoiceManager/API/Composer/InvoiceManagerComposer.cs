@@ -21,6 +21,8 @@ using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Core.Notifications;
 using Umbraco.Cms.Web.Common.ApplicationBuilder;
 using Umbraco.Extensions;
+using InvoiceData = Unicorn.Umbraco.InvoiceManager.Models.InvoiceData;
+
 namespace Unicorn.Umbraco.InvoiceManager.Composer
 {
     public class InvoiceManagerComposer : IComposer
@@ -46,6 +48,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Composer
             //invoices
             builder.Services.AddSingleton<IInvoiceService, InvoiceServices>();
             builder.Services.AddSingleton<IInvoice, Invoice>();
+            builder.Services.AddSingleton<IInvoiceData, InvoiceData>();
             builder.Services.AddSingleton<ICommandDispatcher, CommandDispatcher>();
             builder.Services.AddSingleton<IQueryDispatcher, QueryDispatcher>();
             builder.Services.AddSingleton<ICommand, CreateInvoiceCommand>();

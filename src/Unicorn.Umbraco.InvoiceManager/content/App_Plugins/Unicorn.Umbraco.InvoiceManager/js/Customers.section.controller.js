@@ -16,7 +16,6 @@
         }
         vm.addCustomer = function () {
             customerService.addCustomer({
-                rootNodes: vm.rootNodes,
                 callback: function () {
                     vm.updateList(1);
                 }
@@ -27,17 +26,13 @@
             type: vm.types[0],
             text: ""
         };
-        vm.rootNodes = [
-            { name: "All", key: "" },
-            { name: "Global redirects", key: "00000000-0000-0000-0000-000000000000" }
-        ];
+        
         vm.activeFilters = 0;
 
         vm.loading = false;
         // Opens a dialog for adding a new redirect. When a callback received, the list is updated.
         vm.editCustomer = function (customer) {
             customerService.editCustomer(customer, {
-                rootNodes: vm.rootNodes,
                 callback: function () {
                     vm.updateList();
                 }

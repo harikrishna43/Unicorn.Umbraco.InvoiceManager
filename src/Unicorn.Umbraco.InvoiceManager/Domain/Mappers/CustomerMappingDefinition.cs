@@ -35,6 +35,8 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
             mapper.Define<EditInvoiceOption, EditInvoiceCommand>((source, context) => new EditInvoiceCommand(), InvoiceMap);
             mapper.Define<EditInvoiceCommand, IInvoice>((source, context) => new Invoice(), InvoiceMap);
             mapper.Define<EditInvoiceCommand, Invoice>((source, context) => new Invoice(), InvoiceMap);
+            mapper.Define<InvoiceData, InvoiceItemsDto>((source, context) => new InvoiceItemsDto(), InvoiceMap);
+            mapper.Define<InvoiceData, IInvoiceData>((source, context) => new InvoiceData(), InvoiceMap);
         }
 
         #region Customer mapper
@@ -42,7 +44,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
         {
             target.Name = source.Name;
             target.GSTNumber = source.GSTNumber;
-            target.State=source.State;
+            target.State = source.State;
             target.Address = source.Address;
             target.City = source.City;
             target.CustomerType = source.CustomerType;
@@ -105,7 +107,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
         }
         private void CustomerMap(CustomerSearchResult source, CustomerSearchResultQuery target, MapperContext context)
         {
-            target.Items= source.Items;
+            target.Items = source.Items;
             target.Pagination = source.Pagination;
         }
         private void CustomerMap(GetCustomerQuery source, CustomerSearchOption target, MapperContext context)
@@ -120,46 +122,45 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
         #region Invoice Mapper
         private void InvoiceMap(CreateInvoiceOption source, CreateInvoiceCommand target, MapperContext context)
         {
-            target.InvoiceNote = source.InvoiceNote;
+
             target.InvoiceDate = source.InvoiceDate;
             target.DueDate = source.DueDate;
-            target.Description = source.Description;
-            target.UnitPrice=source.InvoiceData.UnitPrice;
-            target.Quantity = source.InvoiceData.Quantity;
             target.Status = source.Status;
             target.CustomerId = source.CustomerId;
-            target.GST = source.InvoiceData.GST;
             target.InvoiceId = source.InvoiceId;
+            target.InvoiceData = source.InvoiceData;
         }
 
         private void InvoiceMap(CreateInvoiceCommand source, CreateInvoiceOption target, MapperContext context)
         {
-            target.InvoiceNote = source.InvoiceNote;
             target.InvoiceDate = source.InvoiceDate;
             target.DueDate = source.DueDate;
-            target.Description = source.Description;
-            target.UnitPrice = source.UnitPrice;
-            target.Quantity = source.Quantity;
             target.Status = source.Status;
             target.CustomerId = source.CustomerId;
-            target.GST = source.GST;
             target.InvoiceId = source.InvoiceId;
+            target.InvoiceData = source.InvoiceData;
         }
 
         private void InvoiceMap(CreateInvoiceCommand source, InvoiceDto target, MapperContext context)
         {
-            target.InvoiceNote = source.InvoiceNote;
             target.InvoiceDate = source.InvoiceDate;
             target.DueDate = source.DueDate;
+            target.Status = source.Status;
+            target.CustomerId = source.CustomerId;
+            target.Id = source.InvoiceId;
+            target.InvoiceItems = context.Map<List<InvoiceData>, List<InvoiceItemsDto>>(source.InvoiceData);
+        }
+        private void InvoiceMap(InvoiceData source, InvoiceItemsDto target, MapperContext context)
+        {
+            target.InvoiceNote = source.InvoiceNote;
             target.Description = source.Description;
             target.UnitPrice = source.UnitPrice;
             target.Quantity = source.Quantity;
-            target.Status = source.Status;
-            target.CustomerId = source.CustomerId;
+            target.Id = source.Id;
             target.GST = source.GST;
             target.InvoiceId = source.InvoiceId;
-        }
 
+        }
         private void InvoiceMap(InvoiceSearchResult source, InvoiceSearchResultQuery target, MapperContext context)
         {
             target.Items = source.Items;
@@ -171,7 +172,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
             target.Page = source.Page;
             target.Status = source.Status;
             target.Text = source.Text;
-            
+
         }
         private void InvoiceMap(EditInvoiceOption source, EditInvoiceCommand target, MapperContext context)
         {
@@ -179,41 +180,45 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
             target.InvoiceDate = source.InvoiceDate;
             target.DueDate = source.DueDate;
             target.Description = source.Description;
-            target.UnitPrice = source.InvoiceData.UnitPrice;
-            target.Quantity = source.InvoiceData.Quantity;
             target.Status = source.Status;
             target.CustomerId = source.Customer.CustomerId;
             target.GST = source.GST;
             target.InvoiceId = source.InvoiceId;
             target.Customer = source.Customer;
+            target.InvoiceData = source.InvoiceData;
         }
         private void InvoiceMap(EditInvoiceCommand source, IInvoice target, MapperContext context)
         {
-            target.InvoiceNote = source.InvoiceNote;
             target.InvoiceDate = source.InvoiceDate;
             target.DueDate = source.DueDate;
-            target.Description = source.Description;
-            target.UnitPrice = source.UnitPrice;
-            target.Quantity = source.Quantity;
             target.Status = source.Status;
             target.CustomerId = source.Customer.CustomerId;
-            target.GST = source.GST;
             target.InvoiceId = source.InvoiceId;
-            //target.Customer = source.Customer;
+            target.InvoiceData = context.Map<List<InvoiceData>, List<IInvoiceData>>(source.InvoiceData);
         }
+
         private void InvoiceMap(EditInvoiceCommand source, Invoice target, MapperContext context)
         {
-            target.InvoiceNote = source.InvoiceNote;
             target.InvoiceDate = source.InvoiceDate;
             target.DueDate = source.DueDate;
+            target.Status = source.Status;
+            target.CustomerId = source.Customer.CustomerId;
+            target.InvoiceId = source.InvoiceId;
+            //target.Customer = source.Customer;
+            target.InvoiceData = context.Map<List<InvoiceData>, List<IInvoiceData>>(source.InvoiceData);
+        }
+
+        private void InvoiceMap(Unicorn.Umbraco.InvoiceManager.Models.InvoiceData source, Unicorn.Umbraco.InvoiceManager.Interfaces.IInvoiceData target, MapperContext context)
+        {
+            target.InvoiceNote = source.InvoiceNote;
             target.Description = source.Description;
             target.UnitPrice = source.UnitPrice;
             target.Quantity = source.Quantity;
-            target.Status = source.Status;
-            target.CustomerId = source.Customer.CustomerId;
+            target.Id = source.Id;
             target.GST = source.GST;
-            target.InvoiceId = source.InvoiceId;
-            //target.Customer = source.Customer;
+            target.InvoiceId=source.InvoiceId;
+            target.DateCreated = source.DateCreated;
+            target.DateModified = source.DateModified;
         }
         #endregion
     }

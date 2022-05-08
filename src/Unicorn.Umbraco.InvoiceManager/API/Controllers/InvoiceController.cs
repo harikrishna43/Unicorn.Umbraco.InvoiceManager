@@ -25,7 +25,7 @@ using PuppeteerSharp;
 namespace Unicorn.Umbraco.InvoiceManager.Controllers
 {
     /// <summary>
-    /// API controller for managing redirects.
+    /// API controller for managing Customer.
     /// </summary>
     [PluginController("InvoiceManager")]
     public class InvoiceController: UmbracoAuthorizedApiController

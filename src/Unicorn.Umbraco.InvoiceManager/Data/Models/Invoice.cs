@@ -16,29 +16,47 @@ namespace Unicorn.Umbraco.InvoiceManager.Models
             Dto = new InvoiceDto();
         }
         internal InvoiceDto Dto { get; }
-        public int InvoiceId { get => Dto.InvoiceId; set => Dto.InvoiceId=value; }
-        public int CustomerId { get => Dto.CustomerId; set => Dto.CustomerId=value; }
-        public int Status { get => Dto.Status; set => Dto.Status=value; }
-        public DateTime InvoiceDate { get => Dto.InvoiceDate.ToLocalTime(); set => Dto.InvoiceDate=value.ToUniversalTime(); }
-        public DateTime DueDate { get => Dto.DueDate.ToLocalTime(); set => Dto.DueDate=value.ToUniversalTime(); }
-        public string InvoiceNote { get => Dto.InvoiceNote; set => Dto.InvoiceNote=value; }
-        public string Description { get => Dto.Description; set => Dto.Description = value; }
-        public int Quantity { get => Dto.Quantity; set => Dto.Quantity=value; }
-        public decimal UnitPrice { get => Dto.UnitPrice; set => Dto.UnitPrice=value; }
-        public decimal GST { get => Dto.GST; set => Dto.GST=value; }
-        public DateTime DateCreated { get => Dto.DateCreated.ToLocalTime(); set => Dto.DateCreated=value.ToUniversalTime(); }
-        public DateTime DateModified { get => Dto.DateModified.ToLocalTime(); set => Dto.DateModified=value.ToUniversalTime(); }
-        public bool IsDeleted { get => Dto.IsDeleted; set => Dto.IsDeleted=value; }
-        public decimal TotalAmount { get => (this.TotalTax+(Quantity*Dto.UnitPrice)); }
-        public decimal TotalTax { get => ((Dto.GST * Dto.Quantity * Dto.UnitPrice)/100); }
+        internal InvoiceItemsDto ItemsDto { get; }
+        public int InvoiceId { get => Dto.Id; set => Dto.Id = value; }
+        public int CustomerId { get => Dto.CustomerId; set => Dto.CustomerId = value; }
+        public int Status { get => Dto.Status; set => Dto.Status = value; }
+        public DateTime InvoiceDate { get => Dto.InvoiceDate.ToLocalTime(); set => Dto.InvoiceDate = value.ToUniversalTime(); }
+        public DateTime DueDate { get => Dto.DueDate.ToLocalTime(); set => Dto.DueDate = value.ToUniversalTime(); }
+        public DateTime DateCreated { get => Dto.DateCreated.ToLocalTime(); set => Dto.DateCreated = value.ToUniversalTime(); }
+        public DateTime DateModified { get => Dto.DateModified.ToLocalTime(); set => Dto.DateModified = value.ToUniversalTime(); }
+        public bool IsDeleted { get => Dto.IsDeleted; set => Dto.IsDeleted = value; }
         public ICustomer Customer { get => new Customer(Dto.Customer); }
-        public string InvoiceNumber { get => Dto.InvoiceId.ToString("D6"); }
+        public string InvoiceNumber { get => Dto.Id.ToString("D8"); }
 
-        public IInvoiceData InvoiceData{ get=>new InvoiceData(Dto); }
+        public List<IInvoiceData> InvoiceData { get => Dto.InvoiceItems.Select(x => new InvoiceData(x)).ToList<IInvoiceData>();
+            set => Dto.InvoiceItems = value.Select(x =>
+            new InvoiceItemsDto() {
+                Id = x.Id,
+                DateCreated = x.DateCreated,
+                DateModified = x.DateModified,
+                Description = x.Description,
+                GST = x.GST,
+                InvoiceNote = x.InvoiceNote,
+                UnitPrice = x.UnitPrice,
+                Quantity = x.Quantity,
+                InvoiceId = x.InvoiceId
+
+            }).ToList();                                     
+        }
+
+        public decimal TotalAmount { get=> this.InvoiceData.Sum(x=>x.TotalAmount);}
+
+        public decimal TaxableAmount { get=>this.InvoiceData.Sum(x=>x.TaxableAmount);}
+
+        public decimal TotalTax { get => InvoiceData.Sum(x => x.TotalTax); }
 
         internal Invoice(InvoiceDto dto)
         {
             Dto = dto;
+        }
+        internal Invoice(InvoiceItemsDto dto)
+        {
+            ItemsDto = dto;
         }
         #region Static methods
 

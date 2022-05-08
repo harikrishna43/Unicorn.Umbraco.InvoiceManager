@@ -44,7 +44,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Options
         public Customer Customer { get; set; }
 
         [JsonProperty("invoicedata")]
-        public InvoiceData InvoiceData { get; set; }
+        public List<InvoiceData> InvoiceData { get; set; }
 
     }
 }

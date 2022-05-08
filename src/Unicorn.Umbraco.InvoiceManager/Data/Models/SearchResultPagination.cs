@@ -57,14 +57,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Models
 
         #region Constructors
 
-        /// <summary>
-        /// Initializes a new instance based on the specified parameters.
-        /// </summary>
-        /// <param name="total">The total amount of redirects matched.</param>
-        /// <param name="limit">The maximum amount of redirects to be returned per page.</param>
-        /// <param name="offset">The offset.</param>
-        /// <param name="page">The page returned.</param>
-        /// <param name="pages">The total amount of pages.</param>
+        
         public SearchResultPagination(int total, int limit, int offset, int page, int pages)
         {
             Total = total;
