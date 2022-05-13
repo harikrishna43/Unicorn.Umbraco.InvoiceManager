@@ -1,0 +1,48 @@
+﻿<div class="unicornInvoiceManager" ng-controller="InvoiceManager.Editors.InvoiceDetails.Controller">
+    <div class="sidebar-enabled sidebar-end needs-validation">
+        <div class="container">
+            <div class="row">
+                <!-- Content-->
+                
+                <!-- Sidebar-->
+                <div class="col-lg-12 content py-4">
+                    <div class="mb-3">
+                        <h2 class="h4 pb-3">Invoice Items</h2>
+                            <table class="table list" ng-if="model.value.length > 0">
+                                <thead>
+                                    <tr>
+                                        <th>Note &amp; Description</th>
+                                        <th style="text-align:center;">Qty</th>
+                                        <th style="text-align:right;">Unit Price</th>
+                                        <th style="text-align:right;">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in model.value">
+                                        <td>
+                                            <h4 class="nav-heading fs-md mb-1">{{item.note}}</h4>
+                                            <span>{{item.description}}</span>
+                                        </td>
+                                        <td style="text-align:center;">
+                                            <span class="me-2">{{item.quantity}}</span>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span class="me-2" >${{item.unitprice.toFixed(2)}}</span>
+                                        </td>
+                                        <td style="text-align:right;">
+                                            <span class="me-2">${{item.TaxableAmount.toFixed(2)}}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <hr class="mt-0 mb-4">
+                        <div class="d-flex justify-content-between mb-3"><span class="h6 mb-0">Subtotal:</span><span class="text-nav">${{TaxableAmount.toFixed(2)}}</span></div>
+                        <div class="d-flex justify-content-between mb-3"><span class="h6 mb-0">GST(15%):</span><span class="text-nav">${{TotalTaxAmount.toFixed(2)}}</span></div>
+                        <div class="d-flex justify-content-between mb-3"><span class="h6 mb-0">Total:</span><span class="h6 mb-0">${{TotalAmount.toFixed(2)}}</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
