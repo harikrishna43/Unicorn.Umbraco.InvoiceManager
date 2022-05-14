@@ -8,7 +8,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Constants
 {
     public static class ConstantVariables
     {
-        public const string SectionAlias = "InvoiceManagerSection";
-        public const string SectionName = "InvoiceManager";
+        public const string SectionAlias = "unicornUmbracoInvoiceManager";
+        public const string SectionName = "Invoice Manager";
     }
 }

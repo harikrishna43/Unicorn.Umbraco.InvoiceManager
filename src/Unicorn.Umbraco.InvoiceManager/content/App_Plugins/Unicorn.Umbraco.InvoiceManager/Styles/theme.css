@@ -167,7 +167,7 @@
     line-height: inherit;
 }
 
-.unicornInvoiceManager ol,
+/*.unicornInvoiceManager ol,
 .unicornInvoiceManager ul {
     padding-left: 2rem;
 }
@@ -185,7 +185,7 @@
     .unicornInvoiceManager ul ol {
         margin-bottom: 0;
     }
-
+*/
 .unicornInvoiceManager dt {
     font-weight: 700;
 }
