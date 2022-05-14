@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Umbraco.Cms.Core.Hosting;
 using Umbraco.Cms.Core.Mapping;
+using Superpower.Model;
 
 namespace Unicorn.Umbraco.InvoiceManager.Queries.Invoice.QueryHandler
 {
@@ -40,13 +41,22 @@ namespace Unicorn.Umbraco.InvoiceManager.Queries.Invoice.QueryHandler
             htmlTemplate = htmlTemplate.Replace("{{phone}}", data.Customer.Phone);
             htmlTemplate = htmlTemplate.Replace("{{invoicedate}}", data.InvoiceDate.ToString("MMMM dd, yyyy"));
             htmlTemplate = htmlTemplate.Replace("{{duedate}}", data.DueDate.ToString("MMMM dd, yyyy"));
-            //htmlTemplate = htmlTemplate.Replace("{{note}}", data.InvoiceNote);
-            //htmlTemplate = htmlTemplate.Replace("{{description}}", data.Description);
-            //htmlTemplate = htmlTemplate.Replace("{{unitprice}}", data.InvoiceData.UnitPrice.ToString("0.00"));
-            //htmlTemplate = htmlTemplate.Replace("{{qty}}", data.InvoiceData.Quantity.ToString());
-            //htmlTemplate = htmlTemplate.Replace("{{total}}", data.InvoiceData.TaxableAmount.ToString("0.00"));
-            //htmlTemplate = htmlTemplate.Replace("{{totaltax}}", data.InvoiceData.TotalTax.ToString("0.00"));
-            //htmlTemplate = htmlTemplate.Replace("{{totalamount}}", data.InvoiceData.TotalAmount.ToString("0.00"));
+            //<tr> <td class="service">{{note}}</td> <td class="desc">{{description}}</td> <td class="unit">${{unitprice}}</td> <td class="qty">{{qty}}</td> <td class="total">${{total}}</td></tr>
+            string item = String.Empty;
+            foreach (var invoiceItem in data.InvoiceData)
+            {
+                item += "<tr> " +
+                    $"<td class=\"service\">{invoiceItem.InvoiceNote}</td> " +
+                    $"<td class=\"desc\">{invoiceItem.Description}</td> " +
+                    $"<td class=\"qty\">{invoiceItem.Quantity}</td> " +
+                    $"<td class=\"unit\">${invoiceItem.UnitPrice.ToString("0.00")}</td> " +
+                    $"<td class=\"total\">${invoiceItem.TaxableAmount.ToString("0.00")}</td>" +
+                    "</tr>";
+            }
+            htmlTemplate = htmlTemplate.Replace("#items#", item);
+            htmlTemplate = htmlTemplate.Replace("{{total}}", data.TaxableAmount.ToString("0.00"));
+            htmlTemplate = htmlTemplate.Replace("{{totaltax}}", data.TotalTax.ToString("0.00"));
+            htmlTemplate = htmlTemplate.Replace("{{totalamount}}", data.TotalAmount.ToString("0.00"));
             return htmlTemplate;
         }
     }

@@ -3,17 +3,30 @@ using Microsoft.Extensions.Logging;
 using Unicorn.Umbraco.InvoiceManager.Models.Schema;
 using Unicorn.Umbraco.InvoiceManager.Models.Dtos;
 using Unicorn.Umbraco.InvoiceManager.Data.Models.Schema;
+using Umbraco.Cms.Core.Scoping;
+using Umbraco.Cms.Core.Services;
+using Umbraco.Cms.Core;
+using Unicorn.Umbraco.InvoiceManager.Constants;
+using Umbraco.Cms.Core.Web;
 
 namespace Unicorn.Umbraco.InvoiceManager.Migrations
 {
     public class CreateTableMigration : MigrationBase
     {
-        public CreateTableMigration(IMigrationContext context) : base(context)
+        private readonly IUmbracoContextFactory _context;
+        private readonly IScopeProvider _scopeProvider;
+        private readonly IUserService _userService;
+
+        public CreateTableMigration(IMigrationContext context, IUmbracoContextFactory umbracoContextFactory, IScopeProvider scopeProvider, IUserService userService)
+            : base(context)
         {
+            _userService = userService;
+            _context = umbracoContextFactory;
+            _scopeProvider = scopeProvider;
         }
         protected override void Migrate()
         {
-            Logger.LogDebug("Running migration {MigrationStep}", "AddCommentsTable");
+            Logger.LogDebug("Running migration {MigrationStep}", "Add Invoice Manager Tables");
 
             // Lots of methods available in the MigrationBase class - discover with this.
             if (TableExists(CustomerSchema.TableName) == false)

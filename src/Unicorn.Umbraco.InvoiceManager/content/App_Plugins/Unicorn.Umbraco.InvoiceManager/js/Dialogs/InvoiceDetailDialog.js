@@ -84,68 +84,16 @@
         hello: moment(new Date($scope.model.invoice.duedate)).fromNow(),
         readonly: true
     });
+    
     $scope.model.advancedProperties.push({
-        alias: "note",
-        label: "Note",
-        labelKey: "unvoice_propertyNote",
-        description: "Invoice notes",
-        descriptionKey: "invoice_propertyNotesDescription",
-        view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice.note ? $scope.model.invoice.note : ""
-    });
-    $scope.model.advancedProperties.push({
-        alias: "description",
-        label: "Description",
-        labelKey: "invoice_propertyDescription",
-        description: "Add some description about the invoice",
-        descriptionKey: "invoice_propertyInvoiceDescDescription",
-        view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice.description ? $scope.model.invoice.description: "",
-    });
-
-    $scope.model.advancedProperties.push({
-        alias: "quantity",
-        label: "Quantity",
-        labelKey: "invoice_propertyQuantity",
-        view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata.quantity : "",
-    });
-
-    $scope.model.advancedProperties.push({
-        alias: "unitprice",
-        label: "Unit Price",
-        labelKey: "invoice_propertyUnitPrice",
-        view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata.unitprice : "",
-    });
-
-    $scope.model.advancedProperties.push({
-        alias: "taxableamount",
-        label: "Taxable Amount",
-        labelKey: "invoice_propertytaxableamount",
-        view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata.taxableamount : "",
-    });
-    $scope.model.advancedProperties.push({
-        alias: "gst",
-        label: "GST (15%)",
-        labelKey: "invoice_propertyGST",
-        view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata.gst : "",
-    });
-    $scope.model.advancedProperties.push({
-        alias: "totaltax",
-        label: "Total Tax",
-        labelKey: "invoice_propertyTotalTax",
-        view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata.totaltax : "",
-    });
-    $scope.model.advancedProperties.push({
-        alias: "totalamount",
-        label: "Total Amount(Included GST)",
-        labelKey: "invoice_propertyTotalTax",
-        view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata.totalamount : "",
+        alias: "invoicedata",
+        label: "Invoice Details (Included GST)",
+        labelKey: "invoice_propertyTotalAmount",
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/InvoiceDetails.html?v=${cacheBuster}`,
+        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata : null,
+        validation: {
+            mandatory: true,
+        }
     });
 
     $scope.model.infoProperties = [];

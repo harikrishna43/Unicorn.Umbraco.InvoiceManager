@@ -121,6 +121,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
                     .Where<InvoiceDto>(x => x.Id == invoiceId);
 
                 dto = scope.Database.FirstOrDefault<InvoiceDto>(sql);
+                GetReferencedInvoiceItems(dto);
                 scope.Complete();
 
             }

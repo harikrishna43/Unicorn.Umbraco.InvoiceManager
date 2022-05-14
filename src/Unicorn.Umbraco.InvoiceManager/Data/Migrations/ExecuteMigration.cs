@@ -11,6 +11,7 @@ using Umbraco.Cms.Core.Scoping;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Infrastructure.Migrations.Upgrade;
 using Umbraco.Cms.Infrastructure.Migrations;
+using Unicorn.Umbraco.InvoiceManager.Data.Migrations;
 
 namespace Unicorn.Umbraco.InvoiceManager.Migrations
 {
@@ -41,12 +42,12 @@ namespace Unicorn.Umbraco.InvoiceManager.Migrations
 
             // Create a migration plan for a specific project/feature
             // We can then track that latest migration state/step for this project/feature
-            var migrationPlan = new MigrationPlan("UnicornInvoiceManager_v1_2");
+            var migrationPlan = new MigrationPlan("UnicornInvoiceManager_v1_3");
 
             // This is the steps we need to take
             // Each step in the migration adds a unique value
             migrationPlan.From(string.Empty)
-                .To<CreateTableMigration>("UnicornInvoiceManager-db-alpha-2");
+                .To<CreateTableMigration>("UnicornInvoiceManager-db-alpha-3");
 
             // Go and upgrade our site (Will check if it needs to do the work or not)
             // Based on the current/latest step

@@ -1,10 +1,12 @@
-﻿using Umbraco.Cms.Core;
+﻿using System.Linq;
+using Umbraco.Cms.Core;
 using Umbraco.Cms.Core.Logging;
 using Umbraco.Cms.Core.Scoping;
 using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Cms.Infrastructure.Migrations;
 using Unicorn.Umbraco.InvoiceManager.Constants;
+using UmbConstants = Umbraco.Cms.Core.Constants;
 
 namespace Unicorn.Umbraco.InvoiceManager.Data.Migrations
 {
@@ -24,17 +26,13 @@ namespace Unicorn.Umbraco.InvoiceManager.Data.Migrations
 
         protected override void Migrate()
         {
-            using (UmbracoContextReference umbracoContextReference = _context.EnsureUmbracoContext())
+            var userGroup = _userService.GetUserGroupByAlias(UmbConstants.Security.AdminGroupAlias);
+
+            if (userGroup != null && !userGroup.AllowedSections.Contains(ConstantVariables.SectionAlias))
             {
-                using (var scope = _scopeProvider.CreateScope())
-                {
-                    var adminGroup = _userService.GetUserGroupByAlias("admin");
-                    adminGroup.AddAllowedSection(ConstantVariables.SectionAlias);
+                userGroup.AddAllowedSection(ConstantVariables.SectionAlias);
 
-                    _userService.Save(adminGroup);
-
-                    scope.Complete();
-                }
+                _userService.Save(userGroup);
             }
         }
     }

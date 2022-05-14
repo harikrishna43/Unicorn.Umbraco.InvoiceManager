@@ -31,7 +31,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Composer
         {
             builder.Services.AddSingleton<CustomerServiceDependencies>();
             builder.Services.AddSingleton<InvoiceServiceDependencies>();
-            builder.AddNotificationHandler<UmbracoApplicationStartingNotification, ExecuteMigration>();
+            //builder.AddNotificationHandler<UmbracoApplicationStartingNotification, ExecuteMigration>();
             builder.Services.AddSingleton<InvoiceManagerBackOfficeHelperDependencies>();
             builder.AddNotificationHandler<ServerVariablesParsingNotification, ServerVariablesParsingHandler>();
             //customer

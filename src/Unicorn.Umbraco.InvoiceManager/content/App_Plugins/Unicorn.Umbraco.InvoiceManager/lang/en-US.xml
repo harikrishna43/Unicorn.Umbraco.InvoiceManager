@@ -58,6 +58,7 @@
 		<key alias="saveSuccessfulMessage">Your customer has successfully been saved.</key>
 		<key alias="saveFailedTitle">Saving failed</key>
 		<key alias="saveFailedMessage">The customer could not be saved due to an error on the server.</key>
+    <key alias="pagination">Showing %0%-%1% of %2% - Page %3% of %4%</key>
 		
 	</area>
 	<area alias="invoice">
