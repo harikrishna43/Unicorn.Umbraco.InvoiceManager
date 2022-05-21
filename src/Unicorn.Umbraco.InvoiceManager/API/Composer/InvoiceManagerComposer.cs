@@ -44,6 +44,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Composer
             builder.Services.AddSingleton<ICommandHandler<EditCustomerCommand>, EditCustomerCommandHandler>();
             builder.Services.AddSingleton<IQueryHandler<GetCustomerQuery, CustomerSearchResultQuery>, GetCustomerHandler>();
             builder.Services.AddSingleton<IQueryHandler<GetAllCustomerQuery, ICustomer[]>, GetAllCustomerHandler>();
+            builder.Services.AddSingleton<IQueryHandler<IsCustomerExistsQuery, bool>, IsCustomerExistsHandler>();
             builder.Services.AddSingleton<ICommandHandler<DeleteCustomerCommand>, DeleteCustomerCommandHandler>();
             //invoices
             builder.Services.AddSingleton<IInvoiceService, InvoiceServices>();

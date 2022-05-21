@@ -19,8 +19,10 @@ using System.Threading.Tasks;
 using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 using Umbraco.Cms.Web.Common.Attributes;
-using PuppeteerSharp.Media;
-using PuppeteerSharp;
+using PageSize = NReco.PdfGenerator.PageSize;
+using System.Net.Http.Headers;
+using HiQPdf;
+using NReco.PdfGenerator;
 
 namespace Unicorn.Umbraco.InvoiceManager.Controllers
 {
@@ -28,13 +30,13 @@ namespace Unicorn.Umbraco.InvoiceManager.Controllers
     /// API controller for managing Customer.
     /// </summary>
     [PluginController("InvoiceManager")]
-    public class InvoiceController: UmbracoAuthorizedApiController
+    public class InvoiceController : UmbracoAuthorizedApiController
     {
         private readonly IUmbracoMapper _mapper;
         private readonly ICommandDispatcher _commandDispatcher;
         private readonly IQueryDispatcher _queryDispatcher;
         private readonly ILogger<InvoiceController> _logger;
-        
+
         public InvoiceController(IUmbracoMapper mapper, ICommandDispatcher commandDispatcher, IQueryDispatcher queryDispatcher, ILogger<InvoiceController> logger)
         {
             _mapper = mapper;
@@ -53,9 +55,9 @@ namespace Unicorn.Umbraco.InvoiceManager.Controllers
                 _commandDispatcher.Send(command);
                 return Ok();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                _logger.LogError(ex,"Invoice has not been created.");
+                _logger.LogError(ex, "Invoice has not been created.");
                 return BadRequest();
             }
         }
@@ -83,7 +85,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Controllers
         {
             try
             {
-                _commandDispatcher.Send(new DeleteInvoiceCommand { InvoiceId=invoiceId});
+                _commandDispatcher.Send(new DeleteInvoiceCommand { InvoiceId = invoiceId });
                 return Ok();
             }
             catch (Exception ex)
@@ -94,12 +96,12 @@ namespace Unicorn.Umbraco.InvoiceManager.Controllers
         }
 
         [HttpGet]
-        public ActionResult GetInvoices(int page = 1, int limit = 20, int type =2, string text = null, int? customerId = null)
+        public ActionResult GetInvoices(int page = 1, int limit = 20, int type = 2, string text = null, int? customerId = null)
         {
             try
             {
                 var query = new GetInvoiceQuery { Limit = limit, Page = page, Text = text, Status = (InvoiceStatus)type };
-                var data=_queryDispatcher.Send<GetInvoiceQuery, InvoiceSearchResultQuery>(query);
+                var data = _queryDispatcher.Send<GetInvoiceQuery, InvoiceSearchResultQuery>(query);
                 return Ok(data);
             }
             catch (Exception ex)
@@ -110,29 +112,24 @@ namespace Unicorn.Umbraco.InvoiceManager.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Download(int invoiceId)
+        public IActionResult Download(int invoiceId)
         {
-            var data = _queryDispatcher.Send<DownloadInvoiceQuery,InvoiceData>(new DownloadInvoiceQuery { InvoiceId=invoiceId});
+            var data = _queryDispatcher.Send<DownloadInvoiceQuery, InvoiceData>(new DownloadInvoiceQuery { InvoiceId = invoiceId });
+            //var htmlToPdf = new NReco.PdfGenerator.HtmlToPdfConverter();
+            HtmlToPdf htmlToPdfConverter = new HtmlToPdf();
+            // set PDF page size and orientation
+            htmlToPdfConverter.Document.PageSize = PdfPageSize.A4;
+            htmlToPdfConverter.Document.PageOrientation = PdfPageOrientation.Portrait;
 
-            await new BrowserFetcher().DownloadAsync().ConfigureAwait(false);
-            await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions
-            {
-                Headless = true
-            }).ConfigureAwait(false);
-            await using var page = await browser.NewPageAsync().ConfigureAwait(false);
-            await page.EmulateMediaTypeAsync(MediaType.Print);
-            await page.SetContentAsync(data.InvoiceHtmlString);
-            var result = await page.GetContentAsync();
-            var pdfContent = await page.PdfStreamAsync(new PdfOptions
-            {
-                Format = PaperFormat.A4,
-                PrintBackground = true
-            });
+            // set PDF page margins
+            htmlToPdfConverter.Document.Margins = new PdfMargins(0);
+            var pdfBuffer = htmlToPdfConverter.ConvertHtmlToMemory(data.InvoiceHtmlString, "https://unicornthemes.localhost");
+
             var fileName = $"{data.Invoice.InvoiceNumber}_{data.Invoice.Customer.CustomerId}.pdf";
+
             HttpContext.Response.Headers.Add("x-filename", fileName);
             HttpContext.Response.Headers.Add("content-type", "application/pdf");
-            return File(pdfContent, "application/pdf", fileName);
-            //return File(pdfContent, "application/pdf", $"{data.Invoice.InvoiceNumber}_{data.Invoice.Customer.CustomerId}.pdf");
+            return File(pdfBuffer, "application/pdf", fileName);
         }
     }
 }

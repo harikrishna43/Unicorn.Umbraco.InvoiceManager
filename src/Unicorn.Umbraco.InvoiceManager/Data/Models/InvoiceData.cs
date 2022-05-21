@@ -24,7 +24,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Models
         public decimal TotalTax { get => ((Dto.GST * Dto.Quantity * Dto.UnitPrice) / 100); }
         public decimal TotalAmount { get => (this.TotalTax+(Quantity*Dto.UnitPrice)); }
         public int Id { get => Dto.Id; set => Dto.Id=value; }
-        public string InvoiceNote { get => Dto.InvoiceNote; set => Dto.InvoiceNote = value; }
         public string Description { get => Dto.Description; set => Dto.Description = value; }
         public DateTime DateCreated { get => Dto.DateCreated; set => Dto.DateCreated = value; }
         public DateTime DateModified { get => Dto.DateModified; set => Dto.DateModified = value; }

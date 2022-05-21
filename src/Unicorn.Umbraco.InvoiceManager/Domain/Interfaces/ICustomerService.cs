@@ -16,5 +16,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Interfaces
         IEnumerable<ICustomer> GetAll();
         ICustomer GetCustomerById(int id);
         void DeleteCustomer(ICustomer customer);
+        bool IsCustomerExists(string phonenumber);
     }
 }

@@ -167,7 +167,7 @@
     line-height: inherit;
 }
 
-/*.unicornInvoiceManager ol,
+.unicornInvoiceManager ol,
 .unicornInvoiceManager ul {
     padding-left: 2rem;
 }
@@ -185,7 +185,7 @@
     .unicornInvoiceManager ul ol {
         margin-bottom: 0;
     }
-*/
+
 .unicornInvoiceManager dt {
     font-weight: 700;
 }
@@ -5944,10 +5944,10 @@
 
 .unicornInvoiceManager .alert {
     position: relative;
-    padding: 1rem 1.25rem;
-    margin-bottom: 1rem;
+   /* padding: 1rem 1.25rem;
+    margin-bottom: 1rem;*/
     border: 1px solid transparent;
-    border-radius: 1rem;
+    /*border-radius: 1rem;*/
 }
 
 .unicornInvoiceManager .alert-heading {

@@ -161,7 +161,7 @@
                     vm.pagination.pages
                 ];
 
-                localizationService.localize("customer_pagination", tokens).then(function (value) {
+                localizationService.localize("redirects_pagination", tokens).then(function (value) {
                     vm.pagination.text = value;
                 });
 

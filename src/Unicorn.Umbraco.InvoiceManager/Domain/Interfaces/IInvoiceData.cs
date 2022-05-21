@@ -12,9 +12,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Interfaces
         [JsonProperty("id")]
         public int Id { get; set; }
 
-        [JsonProperty("note")]
-        public string InvoiceNote { get; set; }
-
         [JsonProperty("invoiceid")]
         public int InvoiceId { get; set; }
 

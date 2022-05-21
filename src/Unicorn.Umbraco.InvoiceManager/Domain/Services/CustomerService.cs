@@ -15,6 +15,9 @@ using Umbraco.Cms.Core.Services;
 using Umbraco.Cms.Core.Services.Implement;
 using Umbraco.Cms.Core.Web;
 using Umbraco.Extensions;
+using static System.Formats.Asn1.AsnWriter;
+using static Umbraco.Cms.Core.Constants.HttpContext;
+using static Umbraco.Cms.Core.Diagnostics.MiniDump;
 
 namespace Unicorn.Umbraco.InvoiceManager.Services
 {
@@ -39,6 +42,8 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
         {
             if (option == null) throw new ArgumentNullException(nameof(option));
 
+            
+
             Customer item = new Customer()
             {
                 Name = option.Name,
@@ -58,7 +63,17 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
             {
                 try
                 {
-                    scope.Database.Insert(item.Dto);
+                    var sql = scope.SqlContext.Sql().Select<CustomerDto>().From<CustomerDto>();
+                    sql = sql.Where<CustomerDto>(x => x.Phone.InvariantEquals(option.Phone));
+                    var customers=scope.Database.Fetch<CustomerDto>(sql).ToList();
+                    if (!customers.Any())
+                    {
+                        scope.Database.Insert(item.Dto);
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
                 catch (Exception ex)
                 {
@@ -148,7 +163,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
                     }
                     else
                     {
-                        sql = sql.Where<CustomerDto>(x => x.Name.Contains(options.Text) || x.GSTNumber.Contains(options.Text) || x.Address.Contains(options.Text) || x.State.Contains(options.Text) || x.City.Contains(options.Text) || x.Country.Contains(options.Text) || x.ZipCode.Contains(options.Text));
+                        sql = sql.Where<CustomerDto>(x => x.Name.Contains(options.Text) || x.GSTNumber.Contains(options.Text) || x.Address.Contains(options.Text) || x.State.Contains(options.Text) || x.City.Contains(options.Text) || x.Country.Contains(options.Text) || x.ZipCode.Contains(options.Text) || x.Phone.InvariantEquals(options.Text));
                     }
                 }
                 sql = sql.Where<CustomerDto>(x => x.IsDeleted == false);
@@ -233,6 +248,26 @@ namespace Unicorn.Umbraco.InvoiceManager.Services
             }
 
             return customer;
+        }
+
+        public bool IsCustomerExists(string phonenumber)
+        {
+            using (IScope scope = _scopeProvider.CreateScope())
+            {
+                try
+{
+                    var sql = scope.SqlContext.Sql().Select<CustomerDto>().From<CustomerDto>();
+                    sql = sql.Where<CustomerDto>(x => x.Phone.InvariantEquals(phonenumber));
+                    var customers = scope.Database.Fetch<CustomerDto>(sql).ToList();
+                    return customers.Any();
+                }
+                catch (Exception ex)
+                {
+                    throw ex;
+                }
+                scope.Complete();
+            }
+            return false;
         }
     }
 }

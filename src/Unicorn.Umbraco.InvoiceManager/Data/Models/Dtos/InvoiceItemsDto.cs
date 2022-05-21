@@ -33,9 +33,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Dtos
         [ForeignKey(typeof(InvoiceDto), Name = "FK_Invoice_invoiceItemsId")]
         public int InvoiceId { get; set; }
 
-        [Column(nameof(InvoiceNote))]
-        public string InvoiceNote { get; set; }
-
         [Column(nameof(Description))]
         public string Description { get; set; }
 

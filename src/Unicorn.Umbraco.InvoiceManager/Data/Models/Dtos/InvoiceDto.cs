@@ -47,6 +47,12 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Dtos
         [Column(nameof(Status))]
         public int Status { get; set; }
 
+        [Column(nameof(InvoiceNote))]
+        public string InvoiceNote { get; set; }
+
+        [Column(nameof(PaymentStatus))]
+        public int PaymentStatus { get; set; }
+
         [Column(nameof(InvoiceDate))]
         public DateTime InvoiceDate { get; set; }
 

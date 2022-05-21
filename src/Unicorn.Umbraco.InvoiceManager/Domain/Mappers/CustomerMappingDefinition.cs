@@ -124,6 +124,8 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
         {
 
             target.InvoiceDate = source.InvoiceDate;
+            target.PaymentStatus = source.PaymentStatus;
+            target.InvoiceNote = source.InvoiceNote;
             target.DueDate = source.DueDate;
             target.Status = source.Status;
             target.CustomerId = source.CustomerId;
@@ -136,15 +138,20 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
             target.InvoiceDate = source.InvoiceDate;
             target.DueDate = source.DueDate;
             target.Status = source.Status;
+            target.PaymentStatus = source.PaymentStatus;
+            target.InvoiceNote = source.InvoiceNote;
             target.CustomerId = source.CustomerId;
             target.InvoiceId = source.InvoiceId;
             target.InvoiceData = source.InvoiceData;
+            target.InvoiceNote = source.InvoiceNote;
         }
 
         private void InvoiceMap(CreateInvoiceCommand source, InvoiceDto target, MapperContext context)
         {
             target.InvoiceDate = source.InvoiceDate;
             target.DueDate = source.DueDate;
+            target.PaymentStatus = source.PaymentStatus;
+            target.InvoiceNote = source.InvoiceNote;
             target.Status = source.Status;
             target.CustomerId = source.CustomerId;
             target.Id = source.InvoiceId;
@@ -152,7 +159,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
         }
         private void InvoiceMap(InvoiceData source, InvoiceItemsDto target, MapperContext context)
         {
-            target.InvoiceNote = source.InvoiceNote;
+            
             target.Description = source.Description;
             target.UnitPrice = source.UnitPrice;
             target.Quantity = source.Quantity;
@@ -185,15 +192,19 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
             target.GST = source.GST;
             target.InvoiceId = source.InvoiceId;
             target.Customer = source.Customer;
+            target.PaymentStatus = source.PaymentStatus;
             target.InvoiceData = source.InvoiceData;
         }
         private void InvoiceMap(EditInvoiceCommand source, IInvoice target, MapperContext context)
         {
             target.InvoiceDate = source.InvoiceDate;
+            target.PaymentStatus = source.PaymentStatus;
+            target.InvoiceNote = source.InvoiceNote;
             target.DueDate = source.DueDate;
             target.Status = source.Status;
             target.CustomerId = source.Customer.CustomerId;
             target.InvoiceId = source.InvoiceId;
+            target.PaymentStatus = source.PaymentStatus;
             target.InvoiceData = context.Map<List<InvoiceData>, List<IInvoiceData>>(source.InvoiceData);
         }
 
@@ -204,13 +215,13 @@ namespace Unicorn.Umbraco.InvoiceManager.Mappers
             target.Status = source.Status;
             target.CustomerId = source.Customer.CustomerId;
             target.InvoiceId = source.InvoiceId;
-            //target.Customer = source.Customer;
+            target.InvoiceNote= source.InvoiceNote;
+            target.PaymentStatus = source.PaymentStatus;
             target.InvoiceData = context.Map<List<InvoiceData>, List<IInvoiceData>>(source.InvoiceData);
         }
 
         private void InvoiceMap(Unicorn.Umbraco.InvoiceManager.Models.InvoiceData source, Unicorn.Umbraco.InvoiceManager.Interfaces.IInvoiceData target, MapperContext context)
         {
-            target.InvoiceNote = source.InvoiceNote;
             target.Description = source.Description;
             target.UnitPrice = source.UnitPrice;
             target.Quantity = source.Quantity;

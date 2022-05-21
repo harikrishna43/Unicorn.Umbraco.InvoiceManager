@@ -60,7 +60,7 @@
         $scope.editMode = false;
         $scope.setFocus = true;
 
-        if ($scope.newInvoiceItem && $scope.newInvoiceItem.note &&
+        if ($scope.newInvoiceItem && $scope.newInvoiceItem.description &&
             Utilities.isNumber($scope.newInvoiceItem.unitprice) && Utilities.isNumber($scope.newInvoiceItem.quantity) &&
             $scope.newInvoiceItem.unitprice > 0 && $scope.newInvoiceItem.quantity > 0) {
 

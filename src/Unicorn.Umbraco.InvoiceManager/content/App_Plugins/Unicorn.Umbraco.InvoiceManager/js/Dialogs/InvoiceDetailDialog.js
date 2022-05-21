@@ -58,8 +58,19 @@
         description: "Invoice status",
         descriptionKey: "invoice_propertyInvoiceStatusDescription",
         view: `readonlyvalue`,
-        value: $scope.model.invoice && $scope.model.invoice ? $scope.model.invoice.status==0?"Draft":"Created":""
+        value: $scope.model.invoice && $scope.model.invoice.status ? $scope.model.invoice.status==0?"Draft":"Created":""
     });
+
+
+    if ($scope.model.invoice && $scope.model.invoice.status == 1) {
+        $scope.model.advancedProperties.push({
+            alias: "paymentstatus",
+            label: "Payment status",
+            labelKey: "invoice_propertyPaymentStatus",
+            view: `readonlyvalue`,
+            value: $scope.model.invoice && $scope.model.invoice.paymentstatus ? $scope.model.invoice.paymentstatus==0?"Pending" : "Received":"",
+        });
+    }
 
     $scope.model.advancedProperties.push({
         alias: "invoicedate",
@@ -84,7 +95,13 @@
         hello: moment(new Date($scope.model.invoice.duedate)).fromNow(),
         readonly: true
     });
-    
+    $scope.model.advancedProperties.push({
+        alias: "invoicenote",
+        label: "Invoice Note",
+        labelKey: "invoice_propertyInvoiceNote",
+        view: `readonlyvalue`,
+        value: $scope.model.invoice && $scope.model.invoice.invoicenote ? $scope.model.invoice.invoicenote : ""
+    });
     $scope.model.advancedProperties.push({
         alias: "invoicedata",
         label: "Invoice Details (Included GST)",
@@ -95,7 +112,7 @@
             mandatory: true,
         }
     });
-
+    
     $scope.model.infoProperties = [];
     if ($scope.model.invoice && $scope.model.invoice.invoiceid) {
         $scope.model.infoProperties = [

@@ -22,10 +22,14 @@ namespace Unicorn.Umbraco.InvoiceManager.Models.Options
         [JsonProperty("invoicedate")]
         public DateTime InvoiceDate { get; set; }
 
+        [JsonProperty("paymentstatus")]
+        public int PaymentStatus { get; set; }
+
+
         [JsonProperty("duedate")]
         public DateTime DueDate { get; set; }
 
-        [JsonProperty("note")]
+        [JsonProperty("invoicenote")]
         public string InvoiceNote { get; set; }
 
         [JsonProperty("description")]

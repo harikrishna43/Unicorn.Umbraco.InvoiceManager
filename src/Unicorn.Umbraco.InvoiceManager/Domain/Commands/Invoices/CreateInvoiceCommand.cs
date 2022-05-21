@@ -17,6 +17,12 @@ namespace Unicorn.Umbraco.InvoiceManager.Commands.Invoices
         [JsonProperty("customerId")]
         public int CustomerId { get; set; }
 
+        [JsonProperty("paymentstatus")]
+        public int PaymentStatus { get; set; }
+
+        [JsonProperty("invoicenote")]
+        public string InvoiceNote { get; set; }
+
         [JsonProperty("status")]
         public int Status { get; set; }
 

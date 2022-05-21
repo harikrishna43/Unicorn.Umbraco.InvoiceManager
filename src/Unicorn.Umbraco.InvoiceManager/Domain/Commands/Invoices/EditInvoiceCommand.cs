@@ -20,6 +20,9 @@ namespace Unicorn.Umbraco.InvoiceManager.Commands.Invoices
         [JsonProperty("status")]
         public int Status { get; set; }
 
+        [JsonProperty("paymentstatus")]
+        public int PaymentStatus { get; set; }
+
         [JsonProperty("invoicedate")]
         public DateTime InvoiceDate { get; set; }
 

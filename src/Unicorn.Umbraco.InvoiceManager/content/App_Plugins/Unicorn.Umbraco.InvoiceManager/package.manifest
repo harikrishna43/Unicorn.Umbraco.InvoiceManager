@@ -25,7 +25,8 @@
     "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Dialogs/InvoiceDetailDialog.js",
     "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/CustomerDropdownlist.js",
     "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/InvoiceCalculation.Controller.js",
-    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/InvoiceDetails.Controller.js"
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/InvoiceDetails.Controller.js",
+    "~/App_Plugins/Unicorn.Umbraco.InvoiceManager/js/Editors/InvoiceManager.Editors.textboxController.js"
   ],
   "css": [
     "/App_Plugins/Unicorn.Umbraco.InvoiceManager/Styles/Styles.css",

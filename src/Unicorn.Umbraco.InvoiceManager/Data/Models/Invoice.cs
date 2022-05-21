@@ -19,6 +19,11 @@ namespace Unicorn.Umbraco.InvoiceManager.Models
         internal InvoiceItemsDto ItemsDto { get; }
         public int InvoiceId { get => Dto.Id; set => Dto.Id = value; }
         public int CustomerId { get => Dto.CustomerId; set => Dto.CustomerId = value; }
+
+        public int PaymentStatus { get => Dto.PaymentStatus; set => Dto.PaymentStatus= value; }
+
+        public string InvoiceNote { get => Dto.InvoiceNote; set => Dto.InvoiceNote = value; }
+
         public int Status { get => Dto.Status; set => Dto.Status = value; }
         public DateTime InvoiceDate { get => Dto.InvoiceDate.ToLocalTime(); set => Dto.InvoiceDate = value.ToUniversalTime(); }
         public DateTime DueDate { get => Dto.DueDate.ToLocalTime(); set => Dto.DueDate = value.ToUniversalTime(); }
@@ -36,7 +41,6 @@ namespace Unicorn.Umbraco.InvoiceManager.Models
                 DateModified = x.DateModified,
                 Description = x.Description,
                 GST = x.GST,
-                InvoiceNote = x.InvoiceNote,
                 UnitPrice = x.UnitPrice,
                 Quantity = x.Quantity,
                 InvoiceId = x.InvoiceId

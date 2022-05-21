@@ -41,12 +41,12 @@ namespace Unicorn.Umbraco.InvoiceManager.Queries.Invoice.QueryHandler
             htmlTemplate = htmlTemplate.Replace("{{phone}}", data.Customer.Phone);
             htmlTemplate = htmlTemplate.Replace("{{invoicedate}}", data.InvoiceDate.ToString("MMMM dd, yyyy"));
             htmlTemplate = htmlTemplate.Replace("{{duedate}}", data.DueDate.ToString("MMMM dd, yyyy"));
+            htmlTemplate = htmlTemplate.Replace("{{invoicenote}}", data.InvoiceNote);
             //<tr> <td class="service">{{note}}</td> <td class="desc">{{description}}</td> <td class="unit">${{unitprice}}</td> <td class="qty">{{qty}}</td> <td class="total">${{total}}</td></tr>
             string item = String.Empty;
             foreach (var invoiceItem in data.InvoiceData)
             {
                 item += "<tr> " +
-                    $"<td class=\"service\">{invoiceItem.InvoiceNote}</td> " +
                     $"<td class=\"desc\">{invoiceItem.Description}</td> " +
                     $"<td class=\"qty\">{invoiceItem.Quantity}</td> " +
                     $"<td class=\"unit\">${invoiceItem.UnitPrice.ToString("0.00")}</td> " +

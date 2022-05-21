@@ -11,7 +11,7 @@ namespace Unicorn.Umbraco.InvoiceManager.Data.Migrations
     public class UnicornInvoiceManagerMigrationPlan : PackageMigrationPlan
     {
         public UnicornInvoiceManagerMigrationPlan()
-            : base("Unicorm.Umbraco.InvoiceManager", "UnicornInvoiceManager_v1_4")
+            : base("Unicorm.Umbraco.InvoiceManager", "UnicornInvoiceManager_v1_3")
         { }
 
         protected override void DefinePlan()

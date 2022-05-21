@@ -32,7 +32,7 @@
 	
 	<!-- Include NuGet dependencies -->
 	<ItemGroup>
-		<PackageReference Include="PuppeteerSharp" Version="7.0.0" />
+		<PackageReference Include="HiQPdf.Free.NetCore" Version="12.0.0" />
 		<PackageReference Include="Umbraco.Cms.Web.Website" Version="9.4.3" />
 		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.4.3" />
 	</ItemGroup>
@@ -46,6 +46,45 @@
 			<Pack>True</Pack>
 			<PackagePath>buildTransitive</PackagePath>
 		</None>
+	</ItemGroup>
+	<ItemGroup>
+	  <Content Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Styles\Styles.less" />
+	  <Content Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Styles\_dialogs.less" />
+	  <Content Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Styles\_pagination.less" />
+	  <Content Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Styles\_table.less" />
+	</ItemGroup>
+	<ItemGroup>
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Customers\Customers.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Dashboards\info.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Dialogs\Customer.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Dialogs\Invoice.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Dialogs\InvoiceDetails.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Editors\CustomerDropdownlist.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Editors\InvoiceCalculation.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Editors\InvoiceDetails.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Editors\RadioGroup.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Editors\Textbox.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Index.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\InvoiceTemplate\invoice.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Invoice\Invoice.html" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Customers.section.controller.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Dialogs\CustomerDialog.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Dialogs\InvoiceDetailDialog.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Dialogs\InvoiceDialog.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Editors\CustomerDropdownlist.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Editors\InvoiceCalculation.Controller.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Editors\InvoiceDetails.Controller.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Editors\InvoiceManager.Editors.textboxController.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Editors\RadioGroup.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Invoice.section.controller.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\InvoiceManager.section.controller.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Services\CustomerService.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\js\Services\InvoiceService.js" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\lang\en-US.xml" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\package.manifest" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Styles\Styles.css" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Styles\theme.css" />
+	  <None Remove="content\App_Plugins\Unicorn.Umbraco.InvoiceManager\Unicorn.Umbraco.InvoiceManager\Styles\theme.min.css" />
 	</ItemGroup>
 	
 	

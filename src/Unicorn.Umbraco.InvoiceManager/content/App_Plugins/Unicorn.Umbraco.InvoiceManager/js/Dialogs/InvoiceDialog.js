@@ -41,7 +41,8 @@
         view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/CustomerDropdownlist.html?v=${cacheBuster}`,
         value: $scope.model.invoice && $scope.model.invoice.customer ? $scope.model.invoice.customer : null,
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "Customer is required",
         }
     });
 
@@ -50,7 +51,7 @@
         label: "Invoice status",
         labelKey: "invoice_propertyInvoiceStatus",
         view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/RadioGroup.html?v=${cacheBuster}`,
-        value: $scope.model.invoce && $scope.model.invoice.status ? $scope.model.invoice.status: 0,
+        value: $scope.model.invoice && $scope.model.invoice.status ? $scope.model.invoice.status: 0,
         config: {
             options: [
                 {
@@ -66,6 +67,29 @@
             ]
         }
     });
+    if ($scope.model.invoice && $scope.model.invoice.status==1) {
+        $scope.model.advancedProperties.push({
+            alias: "paymentstatus",
+            label: "Payment status",
+            labelKey: "invoice_propertyPaymentStatus",
+            view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/RadioGroup.html?v=${cacheBuster}`,
+            value: $scope.model.invoice && $scope.model.invoice.paymentstatus ? $scope.model.invoice.paymentstatus : 0,
+            config: {
+                options: [
+                    {
+                        label: "Pending",
+                        labelKey: "invoice_labelPaymentPending",
+                        value: 0
+                    },
+                    {
+                        label: "Received",
+                        labelKey: "invoice_labelPaymentReceived",
+                        value: 1
+                    }
+                ]
+            }
+        });
+    }
 
     $scope.model.advancedProperties.push({
         alias: "invoicedate",
@@ -79,6 +103,7 @@
         },
         validation: {
             mandatory: true,
+            mandatoryMessage: "Invoice date is required",
             //pattern: ""
         }
     });
@@ -96,10 +121,25 @@
         },
         validation: {
             mandatory: true,
+            mandatoryMessage: "Invoice due date is required",
             //pattern: ""
         }
     });
-    
+
+    $scope.model.advancedProperties.push({
+        alias: "invoicenote",
+        label: "Invoice Note",
+        labelKey: "invoice_propertyInvoiceNote",
+
+        view: `textarea`,
+        value: $scope.model.invoice && $scope.model.invoice.invoicenote ? $scope.model.invoice.invoicenote : "",
+        validation: {
+            mandatory: true,
+            mandatoryMessage: "Invoice Note is required",
+            //pattern: ""
+        }
+    });
+
     $scope.model.advancedProperties.push({
         alias: "invoicedata",
         label: "Invoice Details (Included GST)",

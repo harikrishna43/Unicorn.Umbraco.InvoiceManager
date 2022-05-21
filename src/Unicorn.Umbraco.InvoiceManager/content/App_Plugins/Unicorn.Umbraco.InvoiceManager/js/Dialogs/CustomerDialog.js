@@ -41,10 +41,13 @@
         labelKey: "customer_propertyName",
         description: "Add Customer name",
         descriptionKey: "customer_propertyNameDescription",
-        view: "textbox",
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Textbox.html?v=${cacheBuster}`,
         value: $scope.model.customer && $scope.model.customer.name ? $scope.model.customer.name : "",
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "Name is required",
+            pattern: "[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*",
+            patternMessage: "Please enter valid name"
         }
     });
 
@@ -54,10 +57,13 @@
         labelKey: "customer_propertyPhone",
         description: "Add Customer phone number",
         descriptionKey: "customer_propertyPhoneDescription",
-        view: "textbox",
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Textbox.html?v=${cacheBuster}`,
         value: $scope.model.customer && $scope.model.customer.phone ? $scope.model.customer.phone: "",
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "Phone number is required",
+            pattern: "[0-9,+,(), ,]{1,}(,[0-9]+){0,}",
+            patternMessage: "Please enter valid phone number"
         }
     });
 
@@ -84,7 +90,8 @@
             ]
         },
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "Customer type is required",
         }
     });
 
@@ -94,10 +101,13 @@
         labelKey: "customer_propertyGSTNumber",
         description: "GST Number",
         descriptionKey: "customer_propertyGSTNumberDescription",
-        view: `textbox`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Textbox.html?v=${cacheBuster}`,
         value: $scope.model.customer && $scope.model.customer.gstnumber ? $scope.model.customer.gstnumber : "",
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "GST number is required",
+            pattern: "^[0-9]*$",
+            patternMessage: "Please enter valid GST number"
         }
     });
 
@@ -110,7 +120,8 @@
         view: `textarea`,
         value: $scope.model.customer && $scope.model.customer.address ? $scope.model.customer.address : "",
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "Address is required"
         }
     });
     $scope.model.properties.push({
@@ -119,10 +130,13 @@
         labelKey: "customer_propertyCity",
         description: "Add customer City",
         descriptionKey: "customer_propertyCityDescription",
-        view: `textbox`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Textbox.html?v=${cacheBuster}`,
         value: $scope.model.customer && $scope.model.customer.city ? $scope.model.customer.city : "",
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "City is required",
+            pattern: "^[A-Za-z]*$",
+            patternMessage: "Please enter valid city"
         }
     });
     $scope.model.properties.push({
@@ -131,10 +145,13 @@
         labelKey: "customer_propertyState",
         description: "Add customer State",
         descriptionKey: "customer_propertyStateDescription",
-        view: `textbox`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Textbox.html?v=${cacheBuster}`,
         value: $scope.model.customer && $scope.model.customer.state ? $scope.model.customer.state : "",
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "State is required",
+            pattern: "^[A-Za-z]*$",
+            patternMessage: "Please enter valid state"
         }
     });
     
@@ -144,10 +161,13 @@
         labelKey: "customer_propertyCountry",
         description: "Add customer Country",
         descriptionKey: "customer_propertyCountryDescription",
-        view: `textbox`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Textbox.html?v=${cacheBuster}`,
         value: $scope.model.customer && $scope.model.customer.country ? $scope.model.customer.country : "",
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "Country is required",
+            pattern: "^[A-Za-z]*$",
+            patternMessage: "Please enter valid country"
         }
     });
 
@@ -157,10 +177,13 @@
         labelKey: "customer_propertyZipCode",
         description: "Add customer ZipCode",
         descriptionKey: "customer_propertyZipCodeDescription",
-        view: `textbox`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Textbox.html?v=${cacheBuster}`,
         value: $scope.model.customer && $scope.model.customer.zipcode ? $scope.model.customer.zipcode : "",
         validation: {
-            mandatory: true
+            mandatory: true,
+            mandatoryMessage: "Postal code is required",
+            pattern: "^[0-9]*$",
+            patternMessage: "Please enter valid postal code"
         }
     });//
 
@@ -227,7 +250,9 @@
             saveSuccessfulTitle: "Customer added",
             saveSuccessfulMessage: "Your customer has successfully been added.",
             saveFailedTitle: "Saving failed",
-            saveFailedMessage: "The customer could not be saved due to an error on the server."
+            saveFailedMessage: "The customer could not be saved due to an error on the server.",
+            duplicateTitle: "Saving failed",
+            duplicateMessage: "Customer is alraedy exist with same phone number."
         };
 
         angular.forEach(vm.labels, function (_, key) {
@@ -292,7 +317,13 @@
                 $scope.model.submit(r);
             }, function (res) {
                 vm.loading = false;
-                notificationsService.error(vm.labels.addFailedTitle, res && res.data && res.data.meta ? res.data.meta.error : vm.labels.addFailedMessage);
+                console.log(res);
+                if (res.status == 409) {
+                    notificationsService.error(vm.labels.duplicateTitle, res && res.data ? res.data : vm.labels.duplicateMessage);
+                }
+                else {
+                    notificationsService.error(vm.labels.addFailedTitle, res && res.data && res.data.meta ? res.data.meta.error : vm.labels.addFailedMessage);
+                }
             });
         }
 
