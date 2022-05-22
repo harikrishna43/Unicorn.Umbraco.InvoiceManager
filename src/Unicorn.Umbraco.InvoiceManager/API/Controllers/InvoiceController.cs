@@ -19,10 +19,7 @@ using System.Threading.Tasks;
 using Umbraco.Cms.Core.Mapping;
 using Umbraco.Cms.Web.BackOffice.Controllers;
 using Umbraco.Cms.Web.Common.Attributes;
-using PageSize = NReco.PdfGenerator.PageSize;
-using System.Net.Http.Headers;
 using HiQPdf;
-using NReco.PdfGenerator;
 
 namespace Unicorn.Umbraco.InvoiceManager.Controllers
 {
