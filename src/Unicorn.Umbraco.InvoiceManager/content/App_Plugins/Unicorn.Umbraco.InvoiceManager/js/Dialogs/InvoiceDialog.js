@@ -21,7 +21,7 @@
     if ($scope.model.invoice) {
 
         $scope.model.title = "Edit Invoice";
-        localizationService.localize("invoice_detailInvoice").then(function (value) { $scope.model.title = value; });
+        localizationService.localize("invoice_editInvoice").then(function (value) { $scope.model.title = value; });
 
         $scope.model.submitButtonLabelKey = "invoice_save";
         $scope.model.hiddenProperties.push({
@@ -182,10 +182,10 @@
                 alias: "updateDate",
                 label: "Updated Date",
                 labelKey: "invoice_propertyUpdateDate",
-                view: `readonlyvalue`,
+                view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Timestamp.html?v=${cacheBuster}`,
                 value: $scope.model.invoice ? $scope.model.invoice.customer.datemodified : null,
-                hello: moment(new Date($scope.model.invoice.customer.datemodified)).fromNow(),
-                readonly: true
+                //hello: moment(new Date($scope.model.invoice.customer.datemodified)).fromNow(),
+                //readonly: true
             }
         ];
     };

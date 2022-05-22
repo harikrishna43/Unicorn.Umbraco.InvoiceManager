@@ -169,14 +169,14 @@
 
 .unicornInvoiceManager ol,
 .unicornInvoiceManager ul {
-    padding-left: 2rem;
+    /*padding-left: 2rem;*/
 }
 
 .unicornInvoiceManager ol,
 .unicornInvoiceManager ul,
 .unicornInvoiceManager dl {
     margin-top: 0;
-    margin-bottom: 1rem;
+    /*margin-bottom: 1rem;*/
 }
 
     .unicornInvoiceManager ol ol,
@@ -5949,7 +5949,9 @@
     border: 1px solid transparent;
     /*border-radius: 1rem;*/
 }
-
+.unicornInvoiceManager .property-error{
+    display:none;
+}
 .unicornInvoiceManager .alert-heading {
     color: inherit;
 }

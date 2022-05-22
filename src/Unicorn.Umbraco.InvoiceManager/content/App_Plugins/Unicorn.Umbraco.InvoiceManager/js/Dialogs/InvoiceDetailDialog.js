@@ -26,8 +26,8 @@
 
     if ($scope.model.invoice) {
 
-        $scope.model.title = "Edit Invoice";
-        localizationService.localize("invoice_editInvoice").then(function (value) { $scope.model.title = value; });
+        $scope.model.title = "Invoice Detail";
+        localizationService.localize("invoice_InvoiceDetail").then(function (value) { $scope.model.title = value; });
 
         $scope.model.submitButtonLabelKey = "invoice_save";
 
@@ -68,7 +68,7 @@
             label: "Payment status",
             labelKey: "invoice_propertyPaymentStatus",
             view: `readonlyvalue`,
-            value: $scope.model.invoice && $scope.model.invoice.paymentstatus ? $scope.model.invoice.paymentstatus==0?"Pending" : "Received":"",
+            value: $scope.model.invoice && $scope.model.invoice.paymentstatus ? $scope.model.invoice.paymentstatus == 0 ? "Pending" : "Received" :"Pending",
         });
     }
 
@@ -78,10 +78,10 @@
         labelKey: "invoice_propertyInvoiceDate",
         description: "Specify invoice date",
         descriptionKey: "invoice_propertyInvoiceDateDescription",
-        view: `readonlyvalue`,
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Timestamp.html?v=${cacheBuster}`,
         value: $scope.model.invoice && $scope.model.invoice.invoicedate ? $scope.model.invoice.invoicedate : "",
-        hello: moment(new Date($scope.model.invoice.invoicedate)).fromNow(),
-        readonly: true
+        //hello: moment(new Date($scope.model.invoice.invoicedate), "DD/MM/YYYY").fromNow(),
+        //readonly: true
     });
 
     $scope.model.advancedProperties.push({
@@ -91,9 +91,9 @@
         description: "Invoice due date",
         descriptionKey: "invoice_propertyDueDateDescription",
         value: $scope.model.invoice && $scope.model.invoice.duedate ? $scope.model.invoice.duedate : "",
-        view: `readonlyvalue`,
-        hello: moment(new Date($scope.model.invoice.duedate)).fromNow(),
-        readonly: true
+        view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Timestamp.html?v=${cacheBuster}`,
+        //hello: moment(new Date($scope.model.invoice.duedate),"DD/MM/YYYY").fromNow(),
+        //readonly: true
     });
     $scope.model.advancedProperties.push({
         alias: "invoicenote",
@@ -104,13 +104,10 @@
     });
     $scope.model.advancedProperties.push({
         alias: "invoicedata",
-        label: "Invoice Details (Included GST)",
+        //label: "Invoice Items(Included GST)",
         labelKey: "invoice_propertyTotalAmount",
         view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/InvoiceDetails.html?v=${cacheBuster}`,
-        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata : null,
-        validation: {
-            mandatory: true,
-        }
+        value: $scope.model.invoice && $scope.model.invoice.invoicedata ? $scope.model.invoice.invoicedata : null
     });
     
     $scope.model.infoProperties = [];
@@ -144,10 +141,10 @@
                 alias: "updateDate",
                 label: "Updated Date",
                 labelKey: "invoice_propertyUpdateDate",
-                view: `readonlyvalue`,
+                view: `/App_Plugins/Unicorn.Umbraco.InvoiceManager/Editors/Timestamp.html?v=${cacheBuster}`,
                 value: $scope.model.invoice ? $scope.model.invoice.customer.datemodified : null,
-                hello: moment(new Date($scope.model.invoice.customer.datemodified)).fromNow(),
-                readonly: true
+                //hello: moment(new Date($scope.model.invoice.customer.datemodified)).fromNow(),
+                //readonly: true
             }
         ];
     };

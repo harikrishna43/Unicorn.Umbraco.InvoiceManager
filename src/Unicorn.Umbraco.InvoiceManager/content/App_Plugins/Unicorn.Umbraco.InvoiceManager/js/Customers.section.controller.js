@@ -30,7 +30,6 @@
         vm.activeFilters = 0;
 
         vm.loading = false;
-        // Opens a dialog for adding a new redirect. When a callback received, the list is updated.
         vm.editCustomer = function (customer) {
             customerService.editCustomer(customer, {
                 callback: function () {
@@ -63,9 +62,6 @@
                 subButtons: []
             }
         ];
-
-
-
         // Initial pagination options
         vm.pagination = {
             text: "",
@@ -161,7 +157,7 @@
                     vm.pagination.pages
                 ];
 
-                localizationService.localize("redirects_pagination", tokens).then(function (value) {
+                localizationService.localize("customer_pagination", tokens).then(function (value) {
                     vm.pagination.text = value;
                 });
 

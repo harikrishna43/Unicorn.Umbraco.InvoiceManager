@@ -64,7 +64,7 @@
             Utilities.isNumber($scope.newInvoiceItem.unitprice) && Utilities.isNumber($scope.newInvoiceItem.quantity) &&
             $scope.newInvoiceItem.unitprice > 0 && $scope.newInvoiceItem.quantity > 0) {
 
-            var exists = _.find($scope.model.value, function (item) { return $scope.newInvoiceItem.note === item.note; });
+            var exists = _.find($scope.model.value, function (item) { return $scope.newInvoiceItem.description === item.description; });
 
             $scope.newInvoiceItem.gst = 15;
             $scope.newInvoiceItem.TaxableAmount = $scope.newInvoiceItem.unitprice * $scope.newInvoiceItem.quantity;
