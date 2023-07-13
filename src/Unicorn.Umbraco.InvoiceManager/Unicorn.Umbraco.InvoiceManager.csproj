@@ -34,7 +34,7 @@
 	<ItemGroup>
 		<PackageReference Include="HiQPdf.Free.NetCore" Version="12.0.0" />
 		<PackageReference Include="Umbraco.Cms.Web.Website" Version="9.4.3" />
-		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="9.4.3" />
+		<PackageReference Include="Umbraco.Cms.Web.BackOffice" Version="10.6.1" />
 	</ItemGroup>
 	<ItemGroup>
 		<Content Include="content\App_Plugins\**\*.*">
